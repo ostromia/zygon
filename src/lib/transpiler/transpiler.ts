@@ -316,39 +316,42 @@ function IterationConditionControlled2(INDENT, INDEX)
 	}
 }
 
-function Selection(INDENT, INDEX)
-{
-	// if answer == 'Yes' then
-	//   print('correct')
-	// elseif answer == "No" then
-	//   print('Wrong')
-	// else
-	//   print('Error')
-	// endif
+const rgx = {
+	selection: {
+		if: /^if\s+(.*?)\s*(?:then)?:?$/,
+		elif: /^(?:else\s*if|elif)\s*(.*?)\s*(?:then)?:?$/,
+		else: /^else:?/,
+		end: /^end\s*if$/
+	}
+};
 
-	// CONVERT NECESSARY PSEUDOCODE INTO PYTHON
-	// REMOVE UNNECESSARY PSEUDOCODE BOILERPLATE
+function Selection(INDENT: number, INDEX: number): void {
 	for (let i = INDEX; i < python.length; i++) {
-		let [type, indent, line] = [...python[i]];
-		if (isPseudo(type, indent, INDENT) && line.match(/^elseif(.*?)then$/)) {
-			let part = line.match(/^elseif(.*?)then$/)[1].trim();
-			python[i] = [true, INDENT, `elif ${part}:`];
-		}
-		else if (isPseudo(type, indent, INDENT) && (line == 'else' || line == 'else:')) {
-			python[i] = [true, INDENT, 'else:'];
-		}
-		else if (isPseudo(type, indent, INDENT) && line === 'endif') {
-			python[i] = [true, INDENT, 'REMOVED'];
-			break;
+		const type = python[i][0];
+		const indent = python[i][1];
+		const line = python[i][2];
+
+		if (isPseudo(type, indent, INDENT)) {
+			if (rgx.selection.elif.test(line)) {
+				python[i][0] = true;
+				python[i][2] = `elif ${line.match(rgx.selection.elif)?.[1].trim()}:`;
+			}
+			else if (rgx.selection.else.test(line)) {
+				python[i][0] = true;
+				python[i][2] = 'else:';
+			}
+			else if (rgx.selection.end.test(line)) {
+				python[i][0] = true;
+				python[i][2] = 'REMOVED';
+				break;
+			}
 		}
 	}
 
-	// CONVERT NECESSARY PSEUDOCODE INTO PYTHON
-	let line = python[INDEX][2];
-	const sRegex = /^if\s+(.*?)\s*(?:then)?:?$/;
-	if (sRegex.test(line)) {
-		line = `if ${sRegex.exec(line)[1]}:`;
-		python[INDEX] = [true, INDENT, line];
+	const part = python[INDEX][2].match(rgx.selection.if);
+	if (part !== null) {
+		python[INDEX][0] = true;
+		python[INDEX][2] = `if ${part[1].trim()}:`;
 	}
 }
 
@@ -419,5 +422,6 @@ export default function transpiler(pseudoArrayInput)
 	return python;
 }
 
-let python = [];
+
+var python: [boolean, number, string][] = [];
 let randomImport = false;
