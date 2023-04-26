@@ -63,14 +63,12 @@
 
 <style lang="scss">
 	main {
-		height: 95vh;
-		z-index: 99;
-
+		height: calc(100vh - 2.5rem);
 		padding: 0.5rem;
 		box-sizing: border-box;
 
 		display: grid;
-		grid-template-rows: 3vh 1fr;
+		grid-template-rows: 1.5rem 1fr;
 		grid-template-columns: 1fr 1fr;
 		grid-template-areas: 'h0 h1' 'e0 e1';
 		gap: 0.5rem;
