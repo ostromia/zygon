@@ -83,7 +83,7 @@
     }
 
     async function edit_paste() {
-        if (activeEditor !== undefined && activeEditor.isRange()) {
+        if (activeEditor !== undefined) {
             activeEditor.setText(
             await navigator.clipboard.readText(),
             ...activeEditor.getRange()
