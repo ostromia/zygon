@@ -1,5 +1,5 @@
 <script>
-	export let color = "white";
+    export let color = "white";
     export let width = 0;
     export let height = width;
 </script>

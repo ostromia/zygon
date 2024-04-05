@@ -88,9 +88,9 @@ else
 endif`;
 
 export default {
-	toArray,
-	toString,
-	transpiler,
-	validator,
-	pastPaperPseudocode
+    toArray,
+    toString,
+    transpiler,
+    validator,
+    pastPaperPseudocode
 }
