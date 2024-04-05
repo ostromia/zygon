@@ -5,13 +5,14 @@
 </script>
 
 <script lang="ts">
+    import Navigation from '$r/Navigation.svelte';
     import CodeMirror from '$r/CodeMirror.svelte';
+    import Headers from '$r/Headers.svelte';
+    import J277Guide from '$r/J277Guide.svelte';
+
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
 
-    import Navigation from '$r/Navigation.svelte';
-    import Headers from '$r/Headers.svelte';
-    import J277Guide from '$r//J277Guide.svelte';
-    import {  VPG_s } from '$r/stores';
+    import { VPG_s } from '$r/stores';
 
     import { default as p2p } from '$lib/transpiler';
 
@@ -85,7 +86,7 @@
         if (activeEditor !== undefined && activeEditor.isRange()) {
             activeEditor.setText(
             await navigator.clipboard.readText(),
-            ...activeEditor.getSelection()
+            ...activeEditor.getRange()
             );
         }
     }
@@ -102,7 +103,7 @@
         const PSEUDOARRAY = p2p.toArray(pseudoEditor.getText());
         const ERROR = p2p.validator(PSEUDOARRAY);
         if (ERROR === '') {
-            pythonEditor.setSyntax(pythonLanguageSupport());
+            pythonEditor.setSyntax([pythonLanguageSupport()]);
             const PYTHONARRAY = p2p.transpiler(PSEUDOARRAY);
             pythonEditor.setText(p2p.toString(PYTHONARRAY));
         }
@@ -121,22 +122,22 @@
 </svelte:head>
 
 <Navigation
-on:file_new={file_new}
-on:file_open={file_open}
-on:file_save_as_pseudocode={file_save_as_pseudocode}
-on:file_save_as_python={file_save_as_python}
+    on:file_new={file_new}
+    on:file_open={file_open}
+    on:file_save_as_pseudocode={file_save_as_pseudocode}
+    on:file_save_as_python={file_save_as_python}
 
-on:edit_undo={edit_undo}
-on:edit_redo={edit_redo}
-on:edit_cut={edit_cut}
-on:edit_copy={edit_copy}
-on:edit_paste={edit_paste}
+    on:edit_undo={edit_undo}
+    on:edit_redo={edit_redo}
+    on:edit_cut={edit_cut}
+    on:edit_copy={edit_copy}
+    on:edit_paste={edit_paste}
 
-on:view_view_past_paper_pseudocode={view_view_past_paper_pseudocode}
-on:view_toggle_pseudocode_guide_j277={view_toggle_pseudocode_guide_j277}
+    on:view_view_past_paper_pseudocode={view_view_past_paper_pseudocode}
+    on:view_toggle_pseudocode_guide_j277={view_toggle_pseudocode_guide_j277}
 
-on:run_transpile_pseudocode_to_python={run_transpile_pseudocode_to_python}
-on:run_interpret_python_code={run_interpret_python_code}
+    on:run_transpile_pseudocode_to_python={run_transpile_pseudocode_to_python}
+    on:run_interpret_python_code={run_interpret_python_code}
 />
 
 <main style="position: absolute">
@@ -152,7 +153,7 @@ on:run_interpret_python_code={run_interpret_python_code}
 
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div on:click={() => activeEditor = pythonEditor} style="display:grid">
-        <CodeMirror bind:this={pythonEditor} filetype={pythonLanguageSupport()}/>
+        <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]}/>
     </div>
 </main>
 

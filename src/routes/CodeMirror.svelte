@@ -1,28 +1,34 @@
-<script context="module">
-</script>
-
 <script lang="ts">
     import { onMount } from 'svelte';
 
-    import { EditorView, minimalSetup } from 'codemirror';
+    // codemirror general
+    import { EditorView } from 'codemirror';
     import { EditorState, Compartment } from "@codemirror/state";
-
     import { oneDark } from '@codemirror/theme-one-dark';
-    import type { LanguageSupport } from '@codemirror/language';
-    import { indentOnInput, indentUnit } from '@codemirror/language';
-    import { keymap, lineNumbers } from '@codemirror/view';
-    import { indentMore, indentLess } from "@codemirror/commands";
 
+    import { keymap } from '@codemirror/view';
+    import { defaultKeymap } from "@codemirror/commands";
+    import { indentUnit } from '@codemirror/language';
+
+    // codemirror extensions
     import { history } from "@codemirror/commands";
+    import { indentOnInput } from '@codemirror/language';
+    import { lineNumbers } from '@codemirror/view';
 
-    import { undo as _undo } from "@codemirror/commands";
-    import { redo as _redo } from "@codemirror/commands";
+    // codemirror state commands
+    import {
+        indentMore,
+        indentLess,
+        undo as _undo,
+        redo as _redo
+    } from "@codemirror/commands";
 
-    import {defaultKeymap} from "@codemirror/commands"
+    // codemirror types
+    import type { LanguageSupport } from '@codemirror/language';
 
 
-    export let doc = '';
-    export let filetype: LanguageSupport | [] = [];
+    export let doc: string = '';
+    export let filetype: LanguageSupport[] = [];
 
     let view: EditorView;
     let dom: HTMLDivElement;
@@ -32,6 +38,14 @@
 
     export function focus(): void {
         view.focus();
+    }
+
+    export function undo(): void {
+        _undo(view);
+    }
+
+    export function redo(): void {
+        _redo(view);
     }
 
     // there are four values within view.state.selection.main relating to cursor positioning: from, to, anchor, head
@@ -53,20 +67,6 @@
         return [view.state.selection.main.from, view.state.selection.main.to];
     }
 
-    export function getSelection() {
-        return [view.state.selection.main.from, view.state.selection.main.to];
-    }
-
-    export function getSelectionText(): string {
-        return view.state.sliceDoc(view.state.selection.main.from, view.state.selection.main.to);
-    }
-
-    export function setSelection(text: string, from_: number, to_: number): void {
-        view.dispatch({
-            changes: { from: from_, to: to_, insert: text }
-        });
-    }
-
     export function setText(text: string, _from = 0, _to = view.state.doc.length): void {
         view.dispatch({
             changes: { from: _from, to: _to, insert: text },
@@ -82,15 +82,7 @@
         }
     }
 
-    export function undo(): void {
-        _undo(view);
-    }
-
-    export function redo(): void {
-        _redo(view);
-    }
-
-    export function setSyntax(filetype: LanguageSupport | []): void {
+    export function setSyntax(filetype: LanguageSupport[]): void {
         view.dispatch({
             effects: language.reconfigure(filetype)
         });
@@ -101,24 +93,22 @@
             doc: doc,
             parent: dom,
             extensions: [
-            oneDark,
-            minimalSetup,
+                oneDark,
 
-            indentUnit.of('    '),
-            tabSize.of(EditorState.tabSize.of(4)),
+                indentUnit.of('    '),
+                tabSize.of(EditorState.tabSize.of(4)),
 
-            language.of(filetype),
+                language.of(filetype),
 
-            // keymap.of(defaultKeymap),
+                keymap.of(defaultKeymap),
+                keymap.of([
+                    { key: 'Tab', run: indentMore, preventDefault: true },
+                    { key: 'Shift-Tab', run: indentLess, preventDefault: true },
+                ]),
 
-            keymap.of([
-            { key: 'Tab', run: indentMore, preventDefault: true },
-            { key: 'Shift-Tab', preventDefault: true, run: indentLess },
-            ]),
-
-            history(),
-            lineNumbers(),
-            indentOnInput()
+                history(),
+                lineNumbers(),
+                indentOnInput()
             ]
         });
         return;
