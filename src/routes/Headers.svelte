@@ -17,23 +17,23 @@
 
 <style lang="scss">
     div {
-        height: 3vh;
-        min-height: 1.5rem;
-        align-items: center;
         display: flex;
-        align-content: center;
+        align-items: center;
+        height: 1rem;
+        padding: 0.125rem;
+        box-sizing: border-box;
+        gap: 0.25rem;
     }
 
     img {
-        height: 1.5rem;
+        height: inherit;
     }
 
     span {
-        font-size: 1rem;
-        line-height: 1rem;
+        color: lightgrey;
+        font-family: 'Albert Sans';
 
-        font-family: 'Trebuchet MS';
-        color: white;
-        margin-left: 0.25rem;
+        font-size: 0.9rem;
+        line-height: 0.9rem;
     }
 </style>

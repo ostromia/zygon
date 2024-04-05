@@ -147,26 +147,32 @@
 <main>
     <Headers/>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div on:click={() => activeEditor = pseudoEditor} style="display:grid">
+    <div on:click={() => activeEditor = pseudoEditor} class="wrapper-editor">
         <CodeMirror bind:this={pseudoEditor}/>
     </div>
 
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div on:click={() => activeEditor = pythonEditor} style="display:grid">
+    <div on:click={() => activeEditor = pythonEditor} class="wrapper-editor">
         <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]}/>
     </div>
 </main>
 
 <style lang="scss">
     main {
-        height: calc(100vh - 2.5rem);
-        padding: 0.5rem;
+        height: calc(100vh - 2rem);
+
+        padding: 0.25rem;
         box-sizing: border-box;
 
         display: grid;
-        grid-template-rows: 1.5rem 1fr;
+        grid-template-rows: 1rem 1fr;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 'h0 h1' 'e0 e1';
-        gap: 0.5rem;
+        gap: 0.25rem;
+    }
+
+    .wrapper-editor {
+        display: grid;
+        overflow: auto;
     }
 </style>

@@ -14,7 +14,7 @@
     div {
         grid-column: 2;
         grid-row: 2;
-        z-index: 99;
+        z-index: 90;
         display: flex;
         flex-direction: column;
         overflow: auto;

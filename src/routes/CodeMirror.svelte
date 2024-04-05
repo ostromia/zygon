@@ -120,6 +120,5 @@
 <style lang="scss">
     div {
         display: grid;
-        overflow: auto;
     }
 </style>
