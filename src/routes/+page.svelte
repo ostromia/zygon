@@ -12,7 +12,7 @@
 
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
 
-    import { VPG_s } from '$r/stores';
+    import { showGuide } from "$lib/stores";
 
     import { default as p2p } from '$lib/transpiler';
 
@@ -96,7 +96,7 @@
     }
 
     function view_toggle_pseudocode_guide_j277() {
-        VPG_s.update(i => !i);
+        showGuide.update(i => !i);
     }
 
     function run_transpile_pseudocode_to_python() {
@@ -140,9 +140,11 @@
     on:run_interpret_python_code={run_interpret_python_code}
 />
 
-<main style="position: absolute">
-    <J277Guide/>
-</main>
+{#if $showGuide}
+    <main style="position: absolute">
+        <J277Guide/>
+    </main>
+{/if}
 
 <main>
     <Headers/>

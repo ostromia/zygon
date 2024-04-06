@@ -1,5 +1,5 @@
 <script>
-    import { VPG_s } from '$r/stores';
+    import { showGuide } from '$lib/stores';
 
     const python_logo = 'devicons/python.svg';
     const ocr_logo = 'devicons/ocr-logo.svg';
@@ -11,8 +11,8 @@
 </div>
 
 <div>
-    <img alt="" src={$VPG_s ? ocr_logo : python_logo}>
-    <span>{$VPG_s ? 'Pseudocode Guide' : 'Python'}</span>
+    <img alt="" src={$showGuide ? ocr_logo : python_logo}>
+    <span>{$showGuide ? 'Pseudocode Guide' : 'Python'}</span>
 </div>
 
 <style lang="scss">

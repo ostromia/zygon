@@ -1,14 +1,8 @@
-<script>
-    import { VPG_s } from '$r/stores';
-</script>
-
-{#if $VPG_s}
-    <div>
-        {#each [...Array(7).keys()] as i}
-            <img alt="" src="Pseudocode-Guide-J277/0{i}.jpg" />
-        {/each}
-    </div>
-{/if}
+<div>
+    {#each [...Array(7).keys()] as i}
+        <img alt="" src="Pseudocode-Guide-J277/0{i}.jpg" />
+    {/each}
+</div>
 
 <style>
     div {

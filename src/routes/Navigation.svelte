@@ -1,8 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     import '@fontsource/albert-sans';
-    import { showDropdown } from '$lib/stores/navigation.js';
-    import { VPG_s } from '$r/stores';
+    import { showDropdown } from '$lib/stores';
     import Favicon from '$lib/Favicon.svelte';
 
     const dispatch = createEventDispatcher();
