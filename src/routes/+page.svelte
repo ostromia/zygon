@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
     function isEmptyString(x: string): boolean {
         return /^\s*$/.test(x);
     }
@@ -16,9 +16,9 @@
 
     import { default as p2p } from '$lib/transpiler';
 
-    let pseudoEditor: CodeMirror;
-    let pythonEditor: CodeMirror;
-    let activeEditor: CodeMirror;
+    let pseudoEditor: CodeMirror = $state();
+    let pythonEditor: CodeMirror = $state();
+    let activeEditor: CodeMirror = $state();
 
     function file_new() {
         if (!isEmptyString(pseudoEditor.getText())) {
@@ -148,18 +148,20 @@
 
 <main>
     <Headers/>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div on:click={() => activeEditor = pseudoEditor} class="wrapper-editor">
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <div onclick={() => activeEditor = pseudoEditor} class="wrapper-editor">
         <CodeMirror bind:this={pseudoEditor}/>
     </div>
 
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div on:click={() => activeEditor = pythonEditor} class="wrapper-editor">
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <div onclick={() => activeEditor = pythonEditor} class="wrapper-editor">
         <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]}/>
     </div>
 </main>
 
 <style lang="scss">
+    @import "../app.scss";
+
     main {
         height: calc(100vh - 2rem);
 

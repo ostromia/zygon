@@ -1,4 +1,6 @@
 <script>
+    import { run } from 'svelte/legacy';
+
     import { createEventDispatcher } from 'svelte';
     import '@fontsource/albert-sans';
     import { showDropdown } from '$lib/stores';
@@ -6,23 +8,25 @@
 
     const dispatch = createEventDispatcher();
 
-    let file_open_input;
+    let file_open_input = $state();
 
     function toggle_dropdown(e) {
         $showDropdown = e.target.innerHTML.toLowerCase();
     }
 
-    let files;
-    $: if (files) {
-        const text_ = files[0].text().then((e) => {
-            dispatch('file_open', {
-                text: e,
+    let files = $state();
+    run(() => {
+        if (files) {
+            const text_ = files[0].text().then((e) => {
+                dispatch('file_open', {
+                    text: e,
+                });
             });
-        });
-    }
+        }
+    });
 </script>
 
-<svelte:window on:click={toggle_dropdown} />
+<svelte:window onclick={toggle_dropdown} />
 
 <!-- input element for file new -->
 <input bind:this={file_open_input} bind:files style="display:none" type="file" accept=".txt" />
@@ -39,45 +43,45 @@
     </div>
 
     <div class="wrapper-nav-button">
-        <button class="nav-button" on:click={toggle_dropdown}>File</button>
+        <button class="nav-button" onclick={toggle_dropdown}>File</button>
         {#if $showDropdown == 'file'}
             <div class="nav-dropdown">
-                <button on:click={() => dispatch('file_new')}>New</button>
-                <button on:click={file_open_input.click()}>Open</button>
-                <button on:click={() => dispatch('file_save_as_pseudocode')}>Save As... (Pseudocode)</button>
-                <button on:click={() => dispatch('file_save_as_python')}>Save As... (Python)</button>
+                <button onclick={() => dispatch('file_new')}>New</button>
+                <button onclick={file_open_input.click()}>Open</button>
+                <button onclick={() => dispatch('file_save_as_pseudocode')}>Save As... (Pseudocode)</button>
+                <button onclick={() => dispatch('file_save_as_python')}>Save As... (Python)</button>
             </div>
         {/if}
     </div>
 
     <div class="wrapper-nav-button">
-        <button class="nav-button" on:click={toggle_dropdown}>Edit</button>
+        <button class="nav-button" onclick={toggle_dropdown}>Edit</button>
         {#if $showDropdown == 'edit'}
             <div class="nav-dropdown">
-                <button on:click={() => dispatch('edit_undo')}>Undo</button>
-                <button on:click={() => dispatch('edit_redo')}>Redo</button>
-                <button on:click={() => dispatch('edit_cut')}>Cut</button>
-                <button on:click={() => dispatch('edit_copy')}>Copy</button>
-                <button on:click={() => dispatch('edit_paste')}>Paste</button>
+                <button onclick={() => dispatch('edit_undo')}>Undo</button>
+                <button onclick={() => dispatch('edit_redo')}>Redo</button>
+                <button onclick={() => dispatch('edit_cut')}>Cut</button>
+                <button onclick={() => dispatch('edit_copy')}>Copy</button>
+                <button onclick={() => dispatch('edit_paste')}>Paste</button>
             </div>
         {/if}
     </div>
 
     <div class="wrapper-nav-button">
-        <button class="nav-button" on:click={toggle_dropdown}>View</button>
+        <button class="nav-button" onclick={toggle_dropdown}>View</button>
         {#if $showDropdown == 'view'}
             <div class="nav-dropdown">
-                <button on:click={() => dispatch('view_view_past_paper_pseudocode')}>View Past Paper Pseudocode</button>
-                <button on:click={() => dispatch('view_toggle_pseudocode_guide_j277')}>Toggle Pseudocode Guide (J277)</button>
+                <button onclick={() => dispatch('view_view_past_paper_pseudocode')}>View Past Paper Pseudocode</button>
+                <button onclick={() => dispatch('view_toggle_pseudocode_guide_j277')}>Toggle Pseudocode Guide (J277)</button>
             </div>
         {/if}
     </div>
 
     <div class="wrapper-nav-button">
-        <button class="nav-button" on:click={toggle_dropdown}>Run</button>
+        <button class="nav-button" onclick={toggle_dropdown}>Run</button>
         {#if $showDropdown == 'run'}
             <div class="nav-dropdown">
-                <button on:click={() => dispatch('run_transpile_pseudocode_to_python')}>Transpile Pseudocode to Python</button>
+                <button onclick={() => dispatch('run_transpile_pseudocode_to_python')}>Transpile Pseudocode to Python</button>
                 <!-- <button on:click={() => dispatch("run_interpret_python_code")}>Interpret Python Code</button> -->
             </div>
         {/if}

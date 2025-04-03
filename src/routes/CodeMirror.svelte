@@ -27,11 +27,15 @@
     import type { LanguageSupport } from '@codemirror/language';
 
 
-    export let doc: string = '';
-    export let filetype: LanguageSupport[] = [];
+    interface Props {
+        doc?: string;
+        filetype?: LanguageSupport[];
+    }
+
+    let { doc = '', filetype = [] }: Props = $props();
 
     let view: EditorView;
-    let dom: HTMLDivElement;
+    let dom: HTMLDivElement = $state();
 
     const tabSize = new Compartment;
     const language = new Compartment;
