@@ -144,22 +144,22 @@
 </svelte:head>
 
 <Navigation
-    on:file_new={file_new}
-    on:file_open={file_open}
-    on:file_save_as_pseudocode={file_save_as_pseudocode}
-    on:file_save_as_python={file_save_as_python}
+    file_new={file_new}
+    file_open={file_open}
+    file_save_as_pseudocode={file_save_as_pseudocode}
+    file_save_as_python={file_save_as_python}
 
-    on:edit_undo={edit_undo}
-    on:edit_redo={edit_redo}
-    on:edit_cut={edit_cut}
-    on:edit_copy={edit_copy}
-    on:edit_paste={edit_paste}
+    edit_undo={edit_undo}
+    edit_redo={edit_redo}
+    edit_cut={edit_cut}
+    edit_copy={edit_copy}
+    edit_paste={edit_paste}
 
-    on:view_view_past_paper_pseudocode={view_view_past_paper_pseudocode}
-    on:view_toggle_pseudocode_guide_j277={view_toggle_pseudocode_guide_j277}
+    view_view_past_paper_pseudocode={view_view_past_paper_pseudocode}
+    view_toggle_pseudocode_guide_j277={view_toggle_pseudocode_guide_j277}
 
-    on:run_transpile_pseudocode_to_python={run_transpile_pseudocode_to_python}
-    on:run_interpret_python_code={run_interpret_python_code}
+    run_transpile_pseudocode_to_python={run_transpile_pseudocode_to_python}
+    run_interpret_python_code={run_interpret_python_code}
 />
 
 {#if $showGuide}
