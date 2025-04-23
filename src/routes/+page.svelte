@@ -181,7 +181,7 @@
 </main>
 
 <style lang="scss">
-    @import "../app.scss";
+    @use "../app.scss";
 
     main {
         height: calc(100vh - 2rem);
