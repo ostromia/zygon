@@ -170,15 +170,14 @@
 
 <main>
     <Headers/>
-    <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <div onclick={() => activeEditor = pseudoEditor} class="wrapper-editor">
-        <CodeMirror bind:this={pseudoEditor}/>
-    </div>
 
-    <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <div onclick={() => activeEditor = pythonEditor} class="wrapper-editor">
+    <button class="wrapper-editor" onclick={() => activeEditor = pseudoEditor}>
+        <CodeMirror bind:this={pseudoEditor}/>
+    </button>
+
+    <button class="wrapper-editor" onclick={() => activeEditor = pythonEditor}>
         <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]}/>
-    </div>
+    </button>
 </main>
 
 <style lang="scss">
@@ -198,6 +197,7 @@
     }
 
     .wrapper-editor {
+        all: unset;
         display: grid;
         overflow: auto;
     }
