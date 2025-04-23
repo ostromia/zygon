@@ -1,7 +1,7 @@
 <script lang="ts">
     import '@fontsource/albert-sans';
     import { showDropdown } from '$lib/stores';
-    import Favicon from '$lib/Favicon.svelte';
+    import Favicon from '$lib/components/Favicon.svelte';
 
     function toggle_dropdown(e: MouseEvent) {
         if (e.target instanceof HTMLElement) {

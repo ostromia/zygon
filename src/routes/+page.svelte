@@ -1,8 +1,8 @@
 <script lang="ts">
-    import Navigation from '$r/Navigation.svelte';
-    import CodeMirror from '$r/CodeMirror.svelte';
-    import Headers from '$r/Headers.svelte';
-    import J277Guide from '$r/J277Guide.svelte';
+    import Navigation from '$lib/components/Navigation.svelte';
+    import CodeMirror from '$lib/components/CodeMirror.svelte';
+    import Headers from '$lib/components/Headers.svelte';
+    import J277Guide from '$lib/components/J277Guide.svelte';
 
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
 
