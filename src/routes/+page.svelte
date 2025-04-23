@@ -1,9 +1,3 @@
-<script module lang="ts">
-    function isEmptyString(x: string): boolean {
-        return /^\s*$/.test(x);
-    }
-</script>
-
 <script lang="ts">
     import Navigation from '$r/Navigation.svelte';
     import CodeMirror from '$r/CodeMirror.svelte';
@@ -16,27 +10,55 @@
 
     import { default as p2p } from '$lib/transpiler';
 
-    let pseudoEditor: CodeMirror = $state();
-    let pythonEditor: CodeMirror = $state();
-    let activeEditor: CodeMirror = $state();
+    let pseudoEditor = $state() as CodeMirror;
+    let pythonEditor = $state() as CodeMirror;
+    let activeEditor = $state() as CodeMirror;
 
     function file_new() {
-        if (!isEmptyString(pseudoEditor.getText())) {
-            window.alert("Your changes will be lost if you don't save them.");
+        if (pseudoEditor.getText().trim()) {
+            const confirmation = confirm("Your changes will be lost if you don't save them.");
+            if (confirmation) {
+                pseudoEditor.setText("");
+            }
         }
-        pseudoEditor.setText("");
+        else {
+            pseudoEditor.setText("");
+        }
     }
 
-    function file_open(e: any) {
-        if (!isEmptyString(pseudoEditor.getText())) {
-            window.alert("Your changes will be lost if you don't save them.");
+    async function file_open() {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = ".txt";
+
+        const file: File = await new Promise((resolve, reject) => {
+            input.onchange = () => {
+                if (input.files && input.files[0]) {
+                    resolve(input.files[0]);
+                } else {
+                    reject(new Error("No file selected"));
+                }
+            };
+            input.click();
+        });
+
+        const file_text = await file.text();
+
+        if (pseudoEditor.getText().trim()) {
+            const confirmation = confirm("Your changes will be lost if you don't save them.");
+            if (confirmation) {
+                pseudoEditor.setText(file_text);
+            }
         }
-        pseudoEditor.setText(e.detail.text);
+
+        else {
+            pseudoEditor.setText(file_text);
+        }
     }
 
     function save_text_as_file(text: string, fileName: string): void {
-        let file = new Blob([ text ]);
-        let a = document.createElement('a');
+        const file = new Blob([ text ]);
+        const a = document.createElement('a');
         a.href = URL.createObjectURL(file);
         a.download = fileName;
         a.click();
@@ -85,8 +107,8 @@
     async function edit_paste() {
         if (activeEditor !== undefined) {
             activeEditor.setText(
-            await navigator.clipboard.readText(),
-            ...activeEditor.getRange()
+                await navigator.clipboard.readText(),
+                ...activeEditor.getRange()
             );
         }
     }
@@ -118,7 +140,7 @@
 </script>
 
 <svelte:head>
-<title>Zygon</title>
+    <title>Zygon</title>
 </svelte:head>
 
 <Navigation

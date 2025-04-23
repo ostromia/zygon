@@ -1,6 +1,4 @@
 <script>
-    import { run } from 'svelte/legacy';
-
     import { createEventDispatcher } from 'svelte';
     import '@fontsource/albert-sans';
     import { showDropdown } from '$lib/stores';
@@ -13,23 +11,9 @@
     function toggle_dropdown(e) {
         $showDropdown = e.target.innerHTML.toLowerCase();
     }
-
-    let files = $state();
-    run(() => {
-        if (files) {
-            const text_ = files[0].text().then((e) => {
-                dispatch('file_open', {
-                    text: e,
-                });
-            });
-        }
-    });
 </script>
 
 <svelte:window onclick={toggle_dropdown} />
-
-<!-- input element for file new -->
-<input bind:this={file_open_input} bind:files style="display:none" type="file" accept=".txt" />
 
 <!--
     `wrapper-nav-button` divs for file, edit, view and run sections
@@ -47,7 +31,7 @@
         {#if $showDropdown == 'file'}
             <div class="nav-dropdown">
                 <button onclick={() => dispatch('file_new')}>New</button>
-                <button onclick={file_open_input.click()}>Open</button>
+                <button onclick={() => dispatch('file_open')}>Open</button>
                 <button onclick={() => dispatch('file_save_as_pseudocode')}>Save As... (Pseudocode)</button>
                 <button onclick={() => dispatch('file_save_as_python')}>Save As... (Python)</button>
             </div>

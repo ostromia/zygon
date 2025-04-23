@@ -1,11 +1,11 @@
 <script lang="ts">
     interface Props {
         color?: string;
-        width?: number;
-        height?: any;
+        width?: string;
+        height?: string;
     }
 
-    let { color = "white", width = 0, height = width }: Props = $props();
+    let { color = "white", width = "0", height = width }: Props = $props();
 </script>
 
 <svg width="{width}" height="{height}" viewBox="0 0 161.24948 66.582184" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg">
