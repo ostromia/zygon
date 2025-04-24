@@ -36,7 +36,7 @@
     let { doc = '', filetype = [], display = true }: Props = $props();
 
     let view: EditorView;
-    let dom: HTMLDivElement = $state();
+    let dom = $state() as HTMLDivElement;
 
     const tabSize = new Compartment;
     const language = new Compartment;
