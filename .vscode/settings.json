@@ -1,19 +1,19 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib",
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
     "editor.detectIndentation": false,
-    "editor.scrollBeyondLastLine": false,
+
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
-    "files.enableTrash": true,
+
+    "typescript.tsdk": "node_modules/typescript/lib",
+
     "svelte.ask-to-enable-ts-plugin": false,
     "svelte.enable-ts-plugin": true,
-    "svelte.plugin.svelte.format.config.singleQuote": true,
-    "svelte.plugin.html.tagComplete.enable": false,
-    "svelte.plugin.svelte.format.config.printWidth": 200,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnPaste": false,
-    "editor.formatOnSave": true
+    "svelte.plugin.html.tagComplete.enable": false
 }
