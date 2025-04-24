@@ -30,7 +30,7 @@
 
 <nav id="mainmenu">
     <div class="wrapper-favicon">
-        <Favicon width="1.4rem" />
+        <Favicon width="1.4rem" color="white" />
     </div>
 
     <div class="wrapper-nav-button">

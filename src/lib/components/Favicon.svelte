@@ -1,14 +1,14 @@
 <script lang="ts">
     interface Props {
-        color?: string;
-        width?: string;
+        color: string;
+        width: string;
         height?: string;
     }
 
-    let { color = "white", width = "0", height = width }: Props = $props();
+    let { color, width, height = width }: Props = $props();
 </script>
 
-<svg width="{width}" height="{height}" viewBox="0 0 161.24948 66.582184" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg">
+<svg style="width: {width}; height: {height};" viewBox="0 0 161.24948 66.582184" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg">
     <g transform="translate(-24.375254,-115.20892)">
         <g aria-label="(.*?)" style="fill: {color}; font-size:50.8px; stroke-width:0.264583;" transform="translate(-1.1082094,8.4962687)">
             <g transform="matrix(1.6378657,0,0,1.6651722,-64.141624,-71.58628)">
