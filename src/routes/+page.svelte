@@ -161,12 +161,6 @@
     run_interpret_python_code={run_interpret_python_code}
 />
 
-{#if $showGuide}
-    <main style="position: absolute">
-        <J277Guide/>
-    </main>
-{/if}
-
 <main>
     <Headers/>
 
@@ -176,6 +170,7 @@
 
     <button class="wrapper-editor" onclick={() => activeEditor = pythonEditor}>
         <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]}/>
+        <J277Guide/>
     </button>
 </main>
 
@@ -199,5 +194,9 @@
         all: unset;
         display: grid;
         overflow: auto;
+
+        position: relative;
+        width: 100%;
+        height: 100%;
     }
 </style>
