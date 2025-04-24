@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
 // stores boolean value representing whether to show pseudocode guide or not
 export const showGuide = writable(false);

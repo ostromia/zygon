@@ -1,18 +1,18 @@
 <script>
-    import { showGuide } from '$lib/stores';
+    import { showGuide } from "$lib/stores";
 
-    const python_logo = 'devicons/python.svg';
-    const ocr_logo = 'devicons/ocr-logo.svg';
+    const python_logo = "devicons/python.svg";
+    const ocr_logo = "devicons/ocr-logo.svg";
 </script>
 
 <div>
-    <img alt="" src={ocr_logo}>
+    <img alt="" src={ocr_logo} />
     <span>Pseudocode</span>
 </div>
 
 <div>
-    <img alt="" src={$showGuide ? ocr_logo : python_logo}>
-    <span>{$showGuide ? 'Pseudocode Guide' : 'Python'}</span>
+    <img alt="" src={$showGuide ? ocr_logo : python_logo} />
+    <span>{$showGuide ? "Pseudocode Guide" : "Python"}</span>
 </div>
 
 <style lang="scss">
@@ -31,7 +31,7 @@
 
     span {
         color: lightgrey;
-        font-family: 'Albert Sans';
+        font-family: "Albert Sans";
 
         font-size: 0.9rem;
         line-height: 0.9rem;

@@ -1,15 +1,14 @@
 <script lang="ts">
-    import Head from '$lib/components/Head.svelte';
-    import Navigation from '$lib/components/Navigation.svelte';
-    import CodeMirror from '$lib/components/CodeMirror.svelte';
-    import Headers from '$lib/components/Headers.svelte';
-    import J277Guide from '$lib/components/J277Guide.svelte';
-
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
+    import "@fontsource/albert-sans";
 
+    import CodeMirror from "$lib/components/CodeMirror.svelte";
+    import Head from "$lib/components/Head.svelte";
+    import Headers from "$lib/components/Headers.svelte";
+    import J277Guide from "$lib/components/J277Guide.svelte";
+    import Navigation from "$lib/components/Navigation.svelte";
     import { showGuide, showPythonEditor } from "$lib/stores";
-
-    import { default as p2p } from '$lib/transpiler';
+    import { default as p2p } from "$lib/transpiler";
 
     let pseudoEditor = $state() as CodeMirror;
     let pythonEditor = $state() as CodeMirror;
@@ -21,8 +20,7 @@
             if (confirmation) {
                 pseudoEditor.setText("");
             }
-        }
-        else {
+        } else {
             pseudoEditor.setText("");
         }
     }
@@ -50,16 +48,14 @@
             if (confirmation) {
                 pseudoEditor.setText(file_text);
             }
-        }
-
-        else {
+        } else {
             pseudoEditor.setText(file_text);
         }
     }
 
     function save_text_as_file(text: string, fileName: string): void {
-        const file = new Blob([ text ]);
-        const a = document.createElement('a');
+        const file = new Blob([text]);
+        const a = document.createElement("a");
         a.href = URL.createObjectURL(file);
         a.download = fileName;
         a.click();
@@ -107,10 +103,7 @@
 
     async function edit_paste() {
         if (activeEditor !== undefined) {
-            activeEditor.setText(
-                await navigator.clipboard.readText(),
-                ...activeEditor.getRange()
-            );
+            activeEditor.setText(await navigator.clipboard.readText(), ...activeEditor.getRange());
         }
     }
 
@@ -119,59 +112,54 @@
     }
 
     function view_toggle_pseudocode_guide_j277() {
-        showGuide.update(i => !i);
-        showPythonEditor.update(i => !i);
+        showGuide.update((i) => !i);
+        showPythonEditor.update((i) => !i);
     }
 
     function run_transpile_pseudocode_to_python() {
         const PSEUDOARRAY = p2p.toArray(pseudoEditor.getText());
         const ERROR = p2p.validator(PSEUDOARRAY);
-        if (ERROR === '') {
+        if (ERROR === "") {
             pythonEditor.setSyntax([pythonLanguageSupport()]);
             const PYTHONARRAY = p2p.transpiler(PSEUDOARRAY);
             pythonEditor.setText(p2p.toString(PYTHONARRAY));
-        }
-        else {
+        } else {
             pythonEditor.setSyntax([]);
             pythonEditor.setText(ERROR);
         }
     }
 
-    function run_interpret_python_code() {
-    }
+    function run_interpret_python_code() {}
 </script>
 
 <Head />
 
 <Navigation
-    file_new={file_new}
-    file_open={file_open}
-    file_save_as_pseudocode={file_save_as_pseudocode}
-    file_save_as_python={file_save_as_python}
-
-    edit_undo={edit_undo}
-    edit_redo={edit_redo}
-    edit_cut={edit_cut}
-    edit_copy={edit_copy}
-    edit_paste={edit_paste}
-
-    view_view_past_paper_pseudocode={view_view_past_paper_pseudocode}
-    view_toggle_pseudocode_guide_j277={view_toggle_pseudocode_guide_j277}
-
-    run_transpile_pseudocode_to_python={run_transpile_pseudocode_to_python}
-    run_interpret_python_code={run_interpret_python_code}
+    {file_new}
+    {file_open}
+    {file_save_as_pseudocode}
+    {file_save_as_python}
+    {edit_undo}
+    {edit_redo}
+    {edit_cut}
+    {edit_copy}
+    {edit_paste}
+    {view_view_past_paper_pseudocode}
+    {view_toggle_pseudocode_guide_j277}
+    {run_transpile_pseudocode_to_python}
+    {run_interpret_python_code}
 />
 
 <main>
-    <Headers/>
+    <Headers />
 
-    <button class="wrapper-editor" onclick={() => activeEditor = pseudoEditor}>
-        <CodeMirror bind:this={pseudoEditor}/>
+    <button class="wrapper-editor" onclick={() => (activeEditor = pseudoEditor)}>
+        <CodeMirror bind:this={pseudoEditor} />
     </button>
 
-    <button class="wrapper-editor" onclick={() => activeEditor = pythonEditor}>
-        <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]} display={$showPythonEditor}/>
-        <J277Guide/>
+    <button class="wrapper-editor" onclick={() => (activeEditor = pythonEditor)}>
+        <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]} display={$showPythonEditor} />
+        <J277Guide />
     </button>
 </main>
 
@@ -187,7 +175,7 @@
         display: grid;
         grid-template-rows: 1rem 1fr;
         grid-template-columns: 1fr 1fr;
-        grid-template-areas: 'h0 h1' 'e0 e1';
+        grid-template-areas: "h0 h1" "e0 e1";
         gap: 0.25rem;
     }
 

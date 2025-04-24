@@ -1,5 +1,6 @@
 <script>
-	import { VERSION } from 'svelte/compiler';
+    import { VERSION } from "svelte/compiler";
+
     const title = "Zygon";
     const description = "Transpile GCSE & A-Level pseudocode into Python.";
     const canonicalURL = "https://ostromia.github.io/zygon/";

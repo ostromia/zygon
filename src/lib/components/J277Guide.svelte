@@ -2,420 +2,393 @@
     import { showGuide } from "$lib/stores";
 </script>
 
-<main style:display={$showGuide ? 'flex' : 'none'}>
+<main style:display={$showGuide ? "flex" : "none"}>
     <div class="title">Comments</div>
 
     <div class="row">
-        <div>Comment</div>
-        <div>//</div>
-        <div>print(“Hello World”) // This is a comment</div>
+        <pre>Comment</pre>
+        <pre>//</pre>
+        <pre>print(“Hello World”) // This is a comment</pre>
     </div>
 
     <div class="title">Variables</div>
 
     <div class="row">
-        <div>Assignment</div>
-        <div>=</div>
-        <div>x = 3</div>
+        <pre>Assignment</pre>
+        <pre>=</pre>
+        <pre>x = 3</pre>
     </div>
 
     <div class="row">
-        <div>Constants</div>
-        <div>const</div>
-        <div>const vat = 0.2</div>
+        <pre>Constants</pre>
+        <pre>const</pre>
+        <pre>const vat = 0.2</pre>
     </div>
 
     <div class="row">
-        <div>Global Variables</div>
-        <div>global</div>
-        <div>global userID = "Cust001"</div>
+        <pre>Global Variables</pre>
+        <pre>global</pre>
+        <pre>global userID = "Cust001"</pre>
     </div>
 
     <div class="title">Input/Output</div>
 
     <div class="row">
-        <div>Input</div>
-        <div>input()</div>
-        <div>myName = input("Please enter a name")</div>
+        <pre>Input</pre>
+        <pre>input()</pre>
+        <pre>myName = input("Please enter a name")</pre>
     </div>
 
     <div class="row">
-        <div>Output</div>
-        <div>print()</div>
-        <div>print("My name is Noni")</div>
+        <pre>Output</pre>
+        <pre>print()</pre>
+        <pre>print("My name is Noni")</pre>
     </div>
 
     <div class="title">Casting</div>
 
     <div class="row">
-        <div>Converting to another data type</div>
-        <div>
-            str()
-        </div>
-        <div>
-            str(345)
-        </div>
+        <pre>Converting to another data type</pre>
+        <pre>str()</pre>
+        <pre>str(345)</pre>
     </div>
 
     <div class="row">
-        <div></div>
-        <div>
-            int()
-        </div>
-        <div>
-            int("3")
-        </div>
+        <pre></pre>
+        <pre>int()</pre>
+        <pre>int("3")</pre>
     </div>
 
     <div class="row">
-        <div></div>
-        <div>
-            float()
-        </div>
-        <div>
-            float("4.52")
-        </div>
+        <pre></pre>
+        <pre>float()</pre>
+        <pre>float("4.52")</pre>
     </div>
 
     <div class="row">
-        <div></div>
-        <div>
-            real()
-        </div>
-        <div>
-            real("4.52")
-        </div>
+        <pre></pre>
+        <pre>real()</pre>
+        <pre>real("4.52")</pre>
     </div>
 
     <div class="row">
-        <div></div>
-        <div>
-            bool()
-        </div>
-        <div>
-            bool("True")
-        </div>
+        <pre></pre>
+        <pre>bool()</pre>
+        <pre>bool("True")</pre>
     </div>
 
     <div class="title">Iteration</div>
 
     <div class="row">
-        <div>FOR loop</div>
-        <div>
-            for ... to ...
-            next ...
-        </div>
-        <div>
-            for i = 0 to 9
-            &nbsp;&nbsp;&nbsp;&nbsp; print("Loop")
-            next i
-            // This will print the word “Loop” 10 times, i.e. 0-9 inclusive.
-        </div>
+        <pre>FOR loop</pre>
+        <pre>for ... to ... next ...</pre>
+        <pre>
+for i = 0 to 9
+    print("Loop")
+next i
+// This will print the word “Loop” 10 times, i.e. 0-9 inclusive.
+        </pre>
     </div>
 
     <div class="row">
-        <div></div>
-        <div>
-            for ... to ... step ...
-            next ...
-        </div>
-        <div>
-            for i = 2 to 10 step 2
-            &nbsp;&nbsp;&nbsp;&nbsp; print(i)
-            next i
-            // This will print the even numbers from 2 to 10 inclusive.
-        </div>
+        <pre></pre>
+        <pre>
+for ... to ... step ...
+next ...
+        </pre>
+        <pre>
+for i = 2 to 10 step 2
+    print(i)
+next i
+// This will print the even numbers from 2 to 10 inclusive.
+        </pre>
     </div>
 
     <div class="row">
-        <div></div>
-        <div></div>
-        <div>
-            for i = 10 to 0 step -1
-            &nbsp;&nbsp;&nbsp;&nbsp; print(i)
-            next i
-            // This will print the numbers from 10 to 0 inclusive, i.e. 10, 9, 8, ..., 2, 1, 0.
+        <pre></pre>
+        <pre></pre>
+        <pre>
+for i = 10 to 0 step -1
+    print(i)
+next i
+// This will print the numbers from 10 to 0 inclusive, i.e. 10, 9, 8, ..., 2, 1, 0.
 
-            // Note that the 'step' command can be used to increment or decrement the loop by any positive or negative integer value.
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div>WHILE loop</div>
-        <div>
-            while ...
-            endwhile
-        </div>
-        <div>
-            while answer != "Correct"
-            &nbsp;&nbsp;&nbsp;&nbsp; answer = input("New answer")
-            endwhile
-            // Will loop until the user inputs the string “Correct”. Check condition is carried out before entering loop.
-        </div>
+// Note that the 'step' command can be used to increment or decrement the loop by any positive or negative integer value.
+        </pre>
     </div>
 
     <div class="row">
-        <div>DO UNTIL loop</div>
-        <div>
-            do
-            until
-        </div>
-        <div>
-            do
-            &nbsp;&nbsp;&nbsp;&nbsp; answer = input("New answer")
-            until answer == "Correct"
-            // Will loop until the user inputs the string “Correct”. Loop iterates once before a check is carried out.
-        </div>
+        <pre>WHILE loop</pre>
+        <pre>
+while ...
+endwhile
+        </pre>
+        <pre>
+while answer != "Correct"
+    answer = input("New answer")
+endwhile
+// Will loop until the user inputs the string “Correct”. Check condition is carried out before entering loop.
+        </pre>
+    </div>
+
+    <div class="row">
+        <pre>DO UNTIL loop</pre>
+        <pre>
+do
+until
+        </pre>
+        <pre>
+do
+    answer = input("New answer")
+until answer == "Correct"
+// Will loop until the user inputs the string “Correct”. Loop iterates once before a check is carried out.
+        </pre>
     </div>
 
     <div class="title">Condition</div>
 
     <div class="row">
-        <div>IF-THEN-ELSE</div>
-        <div>
-            if ... then
-            elseif ... then
-            else
-            endif
-        </div>
-        <div>
-            if answer == "Yes" then
-            &nbsp;&nbsp;&nbsp;&nbsp; print("Correct")
-            elseif answer == "No" then
-            &nbsp;&nbsp;&nbsp;&nbsp; print("Wrong")
-            else
-            &nbsp;&nbsp;&nbsp;&nbsp; print("Error")
-            endif
-        </div>
+        <pre>IF-THEN-ELSE</pre>
+        <pre>
+if ... then
+elseif ... then
+else
+endif
+        </pre>
+        <pre>
+if answer == "Yes" then
+    print("Correct")
+elseif answer == "No" then
+    print("Wrong")
+else
+    print("Error")
+endif
+        </pre>
     </div>
 
     <div class="row">
-        <div>SWITCH</div>
-        <div>
-            switch … :
-            &nbsp;&nbsp;&nbsp;&nbsp; case … :
-            &nbsp;&nbsp;&nbsp;&nbsp; case … :
-            &nbsp;&nbsp;&nbsp;&nbsp; default:
-            endswitch
-        </div>
-        <div>
-            switch day :
-            &nbsp;&nbsp;&nbsp;&nbsp; case "Sat":
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print("Saturday")
-            &nbsp;&nbsp;&nbsp;&nbsp; case "Sun":
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print("Sunday")
-            default:
-            &nbsp;&nbsp;&nbsp;&nbsp; print("Weekday")
-            endswitch
-        </div>
+        <pre>SWITCH</pre>
+        <pre>
+switch … :
+    case … :
+    case … :
+default:
+endswitch
+        </pre>
+        <pre>
+switch day :
+    case "Sat":
+        print("Saturday")
+    case "Sun":
+        print("Sunday")
+default:
+    print("Weekday")
+endswitch
+        </pre>
     </div>
 
     <div class="title">String handling</div>
 
     <div class="row">
-        <div>String length</div>
-        <div>.length</div>
-        <div>
-            subject = "ComputerScience"
-            subject.length // returns the value 15
-        </div>
+        <pre>String length</pre>
+        <pre>.length</pre>
+        <pre>
+subject = "ComputerScience"
+subject.length // returns the value 15
+        </pre>
     </div>
 
     <div class="row">
-        <div>Substrings</div>
-        <div>
-            .substring(x , i)
-            .left(i)
-            .right(i)
-        </div>
-        <div>
-            subject.substring(3,5) // returns "puter"
-            subject.left(4) // returns "Comp"
-            subject.right(3) // returns "nce"
-        </div>
+        <pre>Substrings</pre>
+        <pre>
+.substring(x , i)
+.left(i)
+.right(i)
+        </pre>
+        <pre>
+subject.substring(3,5) // returns "puter"
+subject.left(4) // returns "Comp"
+subject.right(3) // returns "nce"
+        </pre>
     </div>
 
     <div class="row">
-        <div>Concatenation</div>
-        <div>+</div>
-        <div>
-            name = "Tom"
-            print("Your name is: " + name)
-        </div>
+        <pre>Concatenation</pre>
+        <pre>+</pre>
+        <pre>
+name = "Tom"
+print("Your name is: " + name)
+        </pre>
     </div>
 
     <div class="row">
-        <div>Uppercase</div>
-        <div>.upper</div>
-        <div>
-            subject = "ComputerScience"
-            subject.upper // returns "COMPUTERSCIENCE"
-        </div>
+        <pre>Uppercase</pre>
+        <pre>.upper</pre>
+        <pre>
+subject = "ComputerScience"
+subject.upper // returns "COMPUTERSCIENCE"
+        </pre>
     </div>
 
     <div class="row">
-        <div>Lowercase</div>
-        <div>.lower</div>
-        <div>
-            subject.lower // returns "computerscience"
-        </div>
+        <pre>Lowercase</pre>
+        <pre>.lower</pre>
+        <pre>subject.lower // returns "computerscience"</pre>
     </div>
 
     <div class="row">
-        <div>ASCII Conversion</div>
-        <div>ASC(...)</div>
-        <div>ASC('C') // returns 65</div>
+        <pre>ASCII Conversion</pre>
+        <pre>ASC(...)</pre>
+        <pre>ASC('C') // returns 65</pre>
     </div>
 
     <div class="row">
-        <div></div>
-        <div>CHR(...)</div>
-        <div>CHR(97) // returns 'a'</div>
+        <pre></pre>
+        <pre>CHR(...)</pre>
+        <pre>CHR(97) // returns 'a'</pre>
     </div>
-
 
     <div class="title">File Handling</div>
 
     <div class="row">
-        <div>Open</div>
-        <div>open(...)</div>
-        <div>
-            myFile = open("sample.txt")
-            // Note that the file needs to be stored as a variable.
-        </div>
+        <pre>Open</pre>
+        <pre>open(...)</pre>
+        <pre>
+myFile = open("sample.txt")
+// Note that the file needs to be stored as a variable.
+        </pre>
     </div>
 
     <div class="row">
-        <div>Close</div>
-        <div>.close()</div>
-        <div>myFile.close()</div>
+        <pre>Close</pre>
+        <pre>.close()</pre>
+        <pre>myFile.close()</pre>
     </div>
 
     <div class="row">
-        <div>Read line</div>
-        <div>.readLine()</div>
-        <div>myFile.readLine()</div>
+        <pre>Read line</pre>
+        <pre>.readLine()</pre>
+        <pre>myFile.readLine()</pre>
     </div>
 
     <div class="row">
-        <div>Write line</div>
-        <div>.writeLine(...)</div>
-        <div>
-            myFile.writeLine("Add new line")
-            // Note that the line will be written to the END of the file.
-        </div>
+        <pre>Write line</pre>
+        <pre>.writeLine(...)</pre>
+        <pre>
+myFile.writeLine("Add new line")
+// Note that the line will be written to the END of the file.
+        </pre>
     </div>
 
     <div class="row">
-        <div>End of File</div>
-        <div>.endOfFile()</div>
-        <div>
-            while NOT myFile.endOfFile()
-            &nbsp;&nbsp;&nbsp;&nbsp; print(myFile.readLine())
-            endwhile
-        </div>
+        <pre>End of File</pre>
+        <pre>.endOfFile()</pre>
+        <pre>
+while NOT myFile.endOfFile()
+    print(myFile.readLine())
+endwhile
+        </pre>
     </div>
 
     <div class="row">
-        <div>Create a new file</div>
-        <div>newFile(...)</div>
-        <div>
-            newFile("myText.txt")
-            // Creates a new text file called "myText". The file would then need to be opened using the above command for Open.
-        </div>
+        <pre>Create a new file</pre>
+        <pre>newFile(...)</pre>
+        <pre>
+newFile("myText.txt")
+// Creates a new text file called "myText". The file would then need to be opened using the above command for Open.
+        </pre>
     </div>
 
     <div class="title">Arrays</div>
 
     <div class="row">
-        <div>Declaration</div>
-        <div>array colours[...]</div>
-        <div>
-            array colours[5]
-            // Creates 1D array with 5 elements (index 0 to 4).
+        <pre>Declaration</pre>
+        <pre>array colours[...]</pre>
+        <pre>
+array colours[5]
+// Creates 1D array with 5 elements (index 0 to 4).
 
-            array colours = ["Blue", "Pink", "Green", "Yellow", "Red"]
-            // Arrays can be declared with values assigned.
-        </div>
+array colours = ["Blue", "Pink", "Green", "Yellow", "Red"]
+// Arrays can be declared with values assigned.
+        </pre>
     </div>
 
     <div class="row">
-        <div></div>
-        <div>array gameboard[..., ...] = ...</div>
-        <div>
-            array gameboard[8,8]
-            // Creates 2D array with 8 elements (index 0 to 7).
-        </div>
+        <pre></pre>
+        <pre>array gameboard[..., ...] = ...</pre>
+        <pre>
+array gameboard[8,8]
+// Creates 2D array with 8 elements (index 0 to 7).
+        </pre>
     </div>
 
     <div class="row">
-        <div>Assignment</div>
-        <div>names[...] = ...</div>
-        <div>names[3] = "Noni"</div>
+        <pre>Assignment</pre>
+        <pre>names[...] = ...</pre>
+        <pre>names[3] = "Noni"</pre>
     </div>
 
     <div class="row">
-        <div></div>
-        <div>gameboard[..., ...] = ...</div>
-        <div>gameboard[1, 0] = "Pawn"</div>
+        <pre></pre>
+        <pre>gameboard[..., ...] = ...</pre>
+        <pre>gameboard[1, 0] = "Pawn"</pre>
     </div>
 
     <div class="title">Sub programs</div>
 
     <div class="row">
-        <div>Procedure</div>
-        <div>
-            procedure name(...)
-            endprocedure
-        </div>
-        <div>
-            procedure multiply(num1, num2)
-            &nbsp;&nbsp;&nbsp;&nbsp; print(num1 * num2)
-            endprocedure
-        </div>
+        <pre>Procedure</pre>
+        <pre>
+procedure name(...)
+endprocedure
+        </pre>
+        <pre>
+procedure multiply(num1, num2)
+    print(num1 * num2)
+endprocedure
+        </pre>
     </div>
 
     <div class="row">
-        <div>Calling a procedure</div>
-        <div>procedure(parameters)</div>
-        <div>multiply(5, 7)</div>
+        <pre>Calling a procedure</pre>
+        <pre>procedure(parameters)</pre>
+        <pre>multiply(5, 7)</pre>
     </div>
 
     <div class="row">
-        <div>Function</div>
-        <div>
-            function name(...)
-            endfunction
-        </div>
-        <div>
-            function squared(number)
-            &nbsp;&nbsp;&nbsp;&nbsp; squared = number^2
-            &nbsp;&nbsp;&nbsp;&nbsp; return squared
-            endfunction
-        </div>
+        <pre>Function</pre>
+        <pre>
+function name(...)
+endfunction
+        </pre>
+        <pre>
+function squared(number)
+    squared = number^2
+    return squared
+endfunction
+        </pre>
     </div>
 
     <div class="row">
-        <div>Calling a function</div>
-        <div>function(parameters)</div>
-        <div>
-            squared(4)
+        <pre>Calling a function</pre>
+        <pre>function(parameters)</pre>
+        <pre>
+squared(4)
 
-            newValue = squared(4)
-            // Function returns should be stored in a variable if needed for later use in a program.
-        </div>
+newValue = squared(4)
+// Function returns should be stored in a variable if needed for later use in a program.
+        </pre>
     </div>
 
     <div class="title">Random numbers</div>
 
     <div class="row">
-        <div>Random numbers</div>
-        <div>random(..., ...)</div>
-        <div>
-            myVariable = random(1,6)
-            // Creates a random integer between 1 and 6 inclusive.
-        </div>
+        <pre>Random numbers</pre>
+        <pre>random(..., ...)</pre>
+        <pre>
+myVariable = random(1,6)
+// Creates a random integer between 1 and 6 inclusive.
+        </pre>
     </div>
 </main>
 
@@ -437,7 +410,7 @@
         box-sizing: border-box;
 
         color: white;
-        font-family: 'Albert Sans';
+        font-family: "Albert Sans";
     }
 
     .title {
@@ -452,20 +425,21 @@
         width: 100%;
     }
 
-    .row > div {
-        white-space: pre-line;
-        word-break: break-word;
+    .row > pre {
+        white-space: pre-wrap;
     }
 
-    .row > div:nth-child(1), .row > div:nth-child(2) {
+    .row > pre:nth-child(1),
+    .row > pre:nth-child(2) {
         width: 25%;
     }
 
-    .row > div:nth-child(3) {
+    .row > pre:nth-child(3) {
         width: 50%;
     }
 
-    .row > div:nth-child(2), .row > div:nth-child(3) {
-        font-family: 'Courier New', Courier, monospace;
+    .row > pre:nth-child(2),
+    .row > pre:nth-child(3) {
+        font-family: "Courier New", Courier, monospace;
     }
 </style>

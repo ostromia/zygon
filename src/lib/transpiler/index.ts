@@ -1,6 +1,6 @@
-import { toArray, toString } from '$lib/transpiler/parser';
-import transpiler from '$lib/transpiler/transpiler';
-import validator from '$lib/transpiler/validator';
+import { toArray, toString } from "$lib/transpiler/parser";
+import transpiler from "$lib/transpiler/transpiler";
+import validator from "$lib/transpiler/validator";
 
 const pastPaperPseudocode = `// 2020 Sample assessment materials J277/02
 
@@ -93,4 +93,4 @@ export default {
     transpiler,
     validator,
     pastPaperPseudocode
-}
+};

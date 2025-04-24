@@ -2,3 +2,6 @@
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# leave this here until u can disable @trivago/prettier-plugin-sort-imports for specific svelte files
+CodeMirror.svelte

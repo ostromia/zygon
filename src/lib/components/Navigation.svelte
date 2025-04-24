@@ -1,7 +1,6 @@
 <script lang="ts">
-    import '@fontsource/albert-sans';
-    import { showDropdown } from '$lib/stores';
-    import Favicon from '$lib/components/Favicon.svelte';
+    import Favicon from "$lib/components/Favicon.svelte";
+    import { showDropdown } from "$lib/stores";
 
     function toggle_dropdown(e: MouseEvent) {
         if (e.target instanceof HTMLElement) {
@@ -35,7 +34,7 @@
 
     <div class="wrapper-nav-button">
         <button class="nav-button" onclick={toggle_dropdown}>File</button>
-        {#if $showDropdown == 'File'}
+        {#if $showDropdown == "File"}
             <div class="nav-dropdown">
                 <button onclick={file_new}>New</button>
                 <button onclick={file_open}>Open</button>
@@ -47,7 +46,7 @@
 
     <div class="wrapper-nav-button">
         <button class="nav-button" onclick={toggle_dropdown}>Edit</button>
-        {#if $showDropdown == 'Edit'}
+        {#if $showDropdown == "Edit"}
             <div class="nav-dropdown">
                 <button onclick={edit_undo}>Undo</button>
                 <button onclick={edit_redo}>Redo</button>
@@ -60,7 +59,7 @@
 
     <div class="wrapper-nav-button">
         <button class="nav-button" onclick={toggle_dropdown}>View</button>
-        {#if $showDropdown == 'View'}
+        {#if $showDropdown == "View"}
             <div class="nav-dropdown">
                 <button onclick={view_view_past_paper_pseudocode}>View Past Paper Pseudocode</button>
                 <button onclick={view_toggle_pseudocode_guide_j277}>Toggle Pseudocode Guide (J277)</button>
@@ -70,7 +69,7 @@
 
     <div class="wrapper-nav-button">
         <button class="nav-button" onclick={toggle_dropdown}>Run</button>
-        {#if $showDropdown == 'Run'}
+        {#if $showDropdown == "Run"}
             <div class="nav-dropdown">
                 <button onclick={run_transpile_pseudocode_to_python}>Transpile Pseudocode to Python</button>
                 <!-- <button onclick={run_interpret_python_code}>Interpret Python Code</button> -->
@@ -116,7 +115,7 @@
         background-color: unset;
 
         color: lightgrey;
-        font-family: 'Albert Sans';
+        font-family: "Albert Sans";
 
         font-size: 0.8rem;
         line-height: 0.8rem;
@@ -146,7 +145,7 @@
         background-color: unset;
 
         color: lightgrey;
-        font-family: 'Albert Sans';
+        font-family: "Albert Sans";
 
         text-align: left;
 

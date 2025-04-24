@@ -1,17 +1,16 @@
 //@ts-nocheck
 
 // method to check if string is valid python identifier
-String.prototype.isIdentifier = function() {
+String.prototype.isIdentifier = function () {
     return /^[a-zA-Z_]\w*$/.test(this);
-}
+};
 
 // method to check if a string contains a valid integer
-String.prototype.isStringInteger = function() {
+String.prototype.isStringInteger = function () {
     return Number.isInteger(Number(this));
-}
+};
 
-function IterationCountControlled(INDENT, INDEX, LINE)
-{
+function IterationCountControlled(INDENT, INDEX, LINE) {
     const iccRegex1 = /^for\s+(.*?)\s*=\s*(.*?)\s+to\s+(.*?)\s*:?$/;
     const iccRegex2 = /^for\s+(.*?)\s*=\s*(.*?)\s+to\s+(.*?)\s+step\s+(.*?)\s*:?$/;
 
@@ -35,9 +34,7 @@ function IterationCountControlled(INDENT, INDEX, LINE)
             return false;
         }
         return true;
-    }
-
-    else if (iccRegex1.test(LINE)) {
+    } else if (iccRegex1.test(LINE)) {
         let [a, b, c] = iccRegex1.exec(LINE).slice(-3);
         if (!a.isIdentifier()) {
             message = `Error on line ${INDEX}\n    ${a} isn't a valid identifier`;
@@ -52,9 +49,7 @@ function IterationCountControlled(INDENT, INDEX, LINE)
             return false;
         }
         return true;
-    }
-
-    else {
+    } else {
         message = `Error on line ${INDEX}\n    ${LINE}\n
         Please declare for loops as specified by the OCR guide:
         for i=0 to 9
@@ -64,8 +59,7 @@ function IterationCountControlled(INDENT, INDEX, LINE)
     }
 }
 
-export default function validator(pseudoArrayInput)
-{
+export default function validator(pseudoArrayInput) {
     python = pseudoArrayInput;
 
     for (let i = 0; i < python.length; i++) {
@@ -81,4 +75,4 @@ export default function validator(pseudoArrayInput)
 }
 
 let python = [];
-let message = '';
+let message = "";
