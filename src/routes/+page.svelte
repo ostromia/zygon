@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Head from '$lib/components/Head.svelte';
     import Navigation from '$lib/components/Navigation.svelte';
     import CodeMirror from '$lib/components/CodeMirror.svelte';
     import Headers from '$lib/components/Headers.svelte';
@@ -139,9 +140,7 @@
     }
 </script>
 
-<svelte:head>
-    <title>Zygon</title>
-</svelte:head>
+<Head />
 
 <Navigation
     file_new={file_new}
