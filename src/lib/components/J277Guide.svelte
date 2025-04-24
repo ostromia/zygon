@@ -2,7 +2,7 @@
     import { showGuide } from "$lib/stores";
 </script>
 
-<main style:visibility={$showGuide ? 'visible' : 'hidden'}>
+<main style:display={$showGuide ? 'flex' : 'none'}>
     <div class="title">Comments</div>
 
     <div class="row">

@@ -7,7 +7,7 @@
 
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
 
-    import { showGuide } from "$lib/stores";
+    import { showGuide, showPythonEditor } from "$lib/stores";
 
     import { default as p2p } from '$lib/transpiler';
 
@@ -120,6 +120,7 @@
 
     function view_toggle_pseudocode_guide_j277() {
         showGuide.update(i => !i);
+        showPythonEditor.update(i => !i);
     }
 
     function run_transpile_pseudocode_to_python() {
@@ -169,7 +170,7 @@
     </button>
 
     <button class="wrapper-editor" onclick={() => activeEditor = pythonEditor}>
-        <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]}/>
+        <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]} display={$showPythonEditor}/>
         <J277Guide/>
     </button>
 </main>

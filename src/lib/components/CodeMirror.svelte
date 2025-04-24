@@ -30,9 +30,10 @@
     interface Props {
         doc?: string;
         filetype?: LanguageSupport[];
+        display?: boolean
     }
 
-    let { doc = '', filetype = [] }: Props = $props();
+    let { doc = '', filetype = [], display = true }: Props = $props();
 
     let view: EditorView;
     let dom: HTMLDivElement = $state();
@@ -119,7 +120,7 @@
     });
 </script>
 
-<div bind:this={dom}></div>
+<div style:display={display ? 'grid' : 'none'} bind:this={dom}></div>
 
 <style lang="scss">
     div {
