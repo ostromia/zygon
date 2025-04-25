@@ -20,6 +20,7 @@
         edit_paste,
         view_pseudocode_editor,
         view_python_editor,
+        view_console,
         view_pseudocode_guide_j277,
         view_past_paper_pseudocode,
         run_transpile_pseudocode_to_python,
@@ -65,6 +66,7 @@
             <div class="nav-dropdown">
                 <button onclick={view_pseudocode_editor}>Pseudocode Editor</button>
                 <button onclick={view_python_editor}>Python Editor</button>
+                <button onclick={view_console}>Console</button>
                 <button onclick={view_pseudocode_guide_j277}>Pseudocode Guide (J277)</button>
                 <button onclick={view_past_paper_pseudocode}>Past Paper Pseudocode</button>
             </div>
@@ -76,7 +78,7 @@
         {#if $showDropdown == "Run"}
             <div class="nav-dropdown">
                 <button onclick={run_transpile_pseudocode_to_python}>Transpile Pseudocode to Python</button>
-                <!-- <button onclick={run_interpret_python_code}>Interpret Python Code</button> -->
+                <button onclick={run_interpret_python_code}>Interpret Python Code</button>
             </div>
         {/if}
     </div>

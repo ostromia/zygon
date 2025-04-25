@@ -5,6 +5,7 @@
     const inactiveTabColor = "#3a4049";
 
     const python_logo = "devicons/python.svg";
+    const terminal_logo = "devicons/terminal.svg";
     const ocr_logo = "devicons/ocr-logo.svg";
 </script>
 
@@ -19,6 +20,11 @@
     <button class="tab" onclick={() => ($activeRightTab = "pythonEditor")} style:background-color={$activeRightTab == "pythonEditor" ? activeTabColor : inactiveTabColor}>
         <img alt="" src={python_logo} />
         <span>Python</span>
+    </button>
+
+    <button class="tab" onclick={() => ($activeRightTab = "pythonConsole")} style:background-color={$activeRightTab == "pythonConsole" ? activeTabColor : inactiveTabColor}>
+        <img alt="" src={terminal_logo} />
+        <span>Console</span>
     </button>
 
     <button class="tab" onclick={() => ($activeRightTab = "pseudocodeGuide")} style:background-color={$activeRightTab == "pseudocodeGuide" ? activeTabColor : inactiveTabColor}>

@@ -12,6 +12,7 @@
 
     let pseudoEditor = $state() as CodeMirror;
     let pythonEditor = $state() as CodeMirror;
+    let pythonConsole = $state() as CodeMirror;
     let activeEditor = $state() as CodeMirror;
 
     function file_new() {
@@ -107,14 +108,6 @@
         }
     }
 
-    function view_past_paper_pseudocode() {
-        pseudoEditor.setText(p2p.pastPaperPseudocode);
-    }
-
-    function view_pseudocode_guide_j277() {
-        $activeRightTab = "pseudocodeGuide";
-    }
-
     function view_pseudocode_editor() {
         $activeLeftTab = "pseudocodeEditor";
         activeEditor = pseudoEditor;
@@ -125,6 +118,18 @@
         $activeRightTab = "pythonEditor";
         activeEditor = pythonEditor;
         activeEditor.focus();
+    }
+
+    function view_console() {
+        $activeRightTab = "pythonConsole";
+    }
+
+    function view_pseudocode_guide_j277() {
+        $activeRightTab = "pseudocodeGuide";
+    }
+
+    function view_past_paper_pseudocode() {
+        pseudoEditor.setText(p2p.pastPaperPseudocode);
     }
 
     function run_transpile_pseudocode_to_python() {
@@ -157,6 +162,7 @@
     {edit_paste}
     {view_pseudocode_editor}
     {view_python_editor}
+    {view_console}
     {view_pseudocode_guide_j277}
     {view_past_paper_pseudocode}
     {run_transpile_pseudocode_to_python}
@@ -172,6 +178,7 @@
 
     <button class="wrapper-editor" onclick={() => (activeEditor = pythonEditor)}>
         <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]} display={$activeRightTab == "pythonEditor"} />
+        <CodeMirror bind:this={pythonConsole} display={$activeRightTab == "pythonConsole"} linenumbers={false} />
         <J277Guide />
     </button>
 </main>

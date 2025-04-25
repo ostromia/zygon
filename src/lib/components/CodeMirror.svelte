@@ -25,16 +25,45 @@
     interface Props {
         doc?: string;
         filetype?: LanguageSupport[];
+        linenumbers?: boolean;
         display?: boolean;
     }
 
-    let { doc = "", filetype = [], display = true }: Props = $props();
+    let {
+        doc = "",
+        filetype = [],
+        linenumbers = true,
+        display = true,
+
+    }: Props = $props();
 
     let view: EditorView;
     let dom = $state() as HTMLDivElement;
 
     const tabSize = new Compartment();
     const language = new Compartment();
+
+    let extensions = [
+        oneDark,
+
+        indentUnit.of("    "),
+        tabSize.of(EditorState.tabSize.of(4)),
+
+        language.of(filetype),
+
+        keymap.of(defaultKeymap),
+        keymap.of([
+            { key: "Tab", run: indentMore, preventDefault: true },
+            { key: "Shift-Tab", run: indentLess, preventDefault: true }
+        ]),
+
+        history(),
+        indentOnInput()
+    ];
+
+    if (linenumbers) {
+        extensions.push(lineNumbers());
+    }
 
     export function focus(): void {
         view.focus();
@@ -91,24 +120,7 @@
         view = new EditorView({
             doc: doc,
             parent: dom,
-            extensions: [
-                oneDark,
-
-                indentUnit.of("    "),
-                tabSize.of(EditorState.tabSize.of(4)),
-
-                language.of(filetype),
-
-                keymap.of(defaultKeymap),
-                keymap.of([
-                    { key: "Tab", run: indentMore, preventDefault: true },
-                    { key: "Shift-Tab", run: indentLess, preventDefault: true }
-                ]),
-
-                history(),
-                lineNumbers(),
-                indentOnInput()
-            ]
+            extensions: extensions
         });
         return;
     });
