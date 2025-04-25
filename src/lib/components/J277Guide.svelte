@@ -2,7 +2,7 @@
     import { showGuide } from "$lib/stores";
 </script>
 
-<main style:display={$showGuide ? "flex" : "none"}>
+<main style:display={$showGuide ? "grid" : "none"}>
     <div class="title">Comments</div>
 
     <div class="row">
@@ -101,10 +101,17 @@ for i = 2 to 10 step 2
     print(i)
 next i
 // This will print the even numbers from 2 to 10 inclusive.
+
+for i = 10 to 0 step -1
+    print(i)
+next i
+// This will print the numbers from 10 to 0 inclusive, i.e. 10, 9, 8, ..., 2, 1, 0.
+
+// Note that the 'step' command can be used to increment or decrement the loop by any positive or negative integer value.
         </pre>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <pre></pre>
         <pre></pre>
         <pre>
@@ -115,7 +122,7 @@ next i
 
 // Note that the 'step' command can be used to increment or decrement the loop by any positive or negative integer value.
         </pre>
-    </div>
+    </div> -->
 
     <div class="row">
         <pre>WHILE loop</pre>
@@ -394,21 +401,14 @@ myVariable = random(1,6)
 
 <style lang="scss">
     main {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-
-        overflow-y: scroll;
-
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-
-        background: #282c34;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 2.5rem;
 
         padding: 10px;
         box-sizing: border-box;
 
+        background-color: #282c34;
         color: white;
         font-family: "Albert Sans";
     }
@@ -418,24 +418,11 @@ myVariable = random(1,6)
         line-height: 1.5rem;
         padding-left: 0.25rem;
         box-sizing: border-box;
+        grid-column: span 3;
     }
 
     .row {
-        display: flex;
-        width: 100%;
-    }
-
-    .row > pre {
-        white-space: pre-wrap;
-    }
-
-    .row > pre:nth-child(1),
-    .row > pre:nth-child(2) {
-        width: 25%;
-    }
-
-    .row > pre:nth-child(3) {
-        width: 50%;
+        display: contents;
     }
 
     .row > pre:nth-child(2),
