@@ -17,8 +17,6 @@ export function viteStaticCopyPyodide() {
     });
 }
 
-// https://ostromia.github.io/zygon/_app/immutable/nodes/pyodide-lock.json
-
 export default defineConfig({
     plugins: [sveltekit(), viteStaticCopyPyodide()],
     optimizeDeps: { exclude: ["pyodide"] }

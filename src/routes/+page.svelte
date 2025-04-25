@@ -1,7 +1,10 @@
 <script lang="ts">
+    import { onMount } from "svelte";
+
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
     import "@fontsource/albert-sans";
     import { loadPyodide } from "pyodide";
+    import type { PyodideInterface } from "pyodide";
 
     import CodeMirror from "$lib/components/CodeMirror.svelte";
     import Head from "$lib/components/Head.svelte";
@@ -16,12 +19,7 @@
     let pythonConsole = $state() as CodeMirror;
     let activeEditor = $state() as CodeMirror;
 
-    let pyodide;
-
-    (async () => {
-        pyodide = await loadPyodide();
-        await pyodide.runPythonAsync(`import io\nimport sys\nsys.stdout = io.StringIO()`);
-    })();
+    let pyodide: PyodideInterface;
 
     function file_new() {
         if (pseudoEditor.getText().trim()) {
@@ -155,16 +153,25 @@
 
     async function run_interpret_python_code() {
         let output;
+
         try {
-            output = pyodide.runPython(`${pythonEditor.getText()}`);
+            await pyodide.runPythonAsync(`${pythonEditor.getText()}`);
             output = pyodide.runPython("sys.stdout.getvalue()");
             pyodide.runPython("sys.stdout = io.StringIO()");
         } catch (e) {
-            output = e.toString();
+            if (e instanceof Error) {
+                output = e.toString();
+            }
         }
+
         pythonConsole.setText(output);
         $activeRightTab = "pythonConsole";
     }
+
+    onMount(async () => {
+        pyodide = await loadPyodide();
+        await pyodide.runPythonAsync(`import io\nimport sys\nsys.stdout = io.StringIO()`);
+    });
 </script>
 
 <Head />
