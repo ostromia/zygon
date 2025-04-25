@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { onMount } from "svelte";
+
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
     import "@fontsource/albert-sans";
 
@@ -14,6 +16,8 @@
     let pythonEditor = $state() as CodeMirror;
     let pythonConsole = $state() as CodeMirror;
     let activeEditor = $state() as CodeMirror;
+
+    let pyodide;
 
     function file_new() {
         if (pseudoEditor.getText().trim()) {
@@ -145,8 +149,30 @@
         }
     }
 
-    function run_interpret_python_code() {}
+    async function run_interpret_python_code() {
+        let output;
+
+        try {
+            output = pyodide.runPython(`${pythonEditor.getText()}`);
+            output = pyodide.runPython("sys.stdout.getvalue()") + "\n";
+            pyodide.runPython("sys.stdout = io.StringIO()");
+        } catch (e) {
+            output = e.toString();
+        }
+
+        pythonConsole.setText(output);
+        $activeRightTab = "pythonConsole";
+    }
+
+    onMount(async () => {
+        pyodide = await loadPyodide();
+        pyodide.runPython(`import io\nimport sys\nsys.stdout = io.StringIO()`);
+    });
 </script>
+
+<svelte:head>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.27.5/full/pyodide.js"></script>
+</svelte:head>
 
 <Head />
 
