@@ -18,8 +18,10 @@
         edit_cut,
         edit_copy,
         edit_paste,
-        view_view_past_paper_pseudocode,
-        view_toggle_pseudocode_guide_j277,
+        view_pseudocode_editor,
+        view_python_editor,
+        view_pseudocode_guide_j277,
+        view_past_paper_pseudocode,
         run_transpile_pseudocode_to_python,
         run_interpret_python_code
     } = $props();
@@ -61,8 +63,10 @@
         <button class="nav-button" onclick={toggle_dropdown}>View</button>
         {#if $showDropdown == "View"}
             <div class="nav-dropdown">
-                <button onclick={view_view_past_paper_pseudocode}>View Past Paper Pseudocode</button>
-                <button onclick={view_toggle_pseudocode_guide_j277}>Toggle Pseudocode Guide (J277)</button>
+                <button onclick={view_pseudocode_editor}>Pseudocode Editor</button>
+                <button onclick={view_python_editor}>Python Editor</button>
+                <button onclick={view_pseudocode_guide_j277}>Pseudocode Guide (J277)</button>
+                <button onclick={view_past_paper_pseudocode}>Past Paper Pseudocode</button>
             </div>
         {/if}
     </div>

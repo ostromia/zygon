@@ -7,7 +7,7 @@
     import Headers from "$lib/components/Headers.svelte";
     import J277Guide from "$lib/components/J277Guide.svelte";
     import Navigation from "$lib/components/Navigation.svelte";
-    import { showGuide, showPythonEditor } from "$lib/stores";
+    import { activeLeftTab, activeRightTab } from "$lib/stores";
     import { default as p2p } from "$lib/transpiler";
 
     let pseudoEditor = $state() as CodeMirror;
@@ -107,13 +107,24 @@
         }
     }
 
-    function view_view_past_paper_pseudocode() {
+    function view_past_paper_pseudocode() {
         pseudoEditor.setText(p2p.pastPaperPseudocode);
     }
 
-    function view_toggle_pseudocode_guide_j277() {
-        showGuide.update((i) => !i);
-        showPythonEditor.update((i) => !i);
+    function view_pseudocode_guide_j277() {
+        $activeRightTab = "pseudocodeGuide";
+    }
+
+    function view_pseudocode_editor() {
+        $activeLeftTab = "pseudocodeEditor";
+        activeEditor = pseudoEditor;
+        activeEditor.focus();
+    }
+
+    function view_python_editor() {
+        $activeRightTab = "pythonEditor";
+        activeEditor = pythonEditor;
+        activeEditor.focus();
     }
 
     function run_transpile_pseudocode_to_python() {
@@ -144,8 +155,10 @@
     {edit_cut}
     {edit_copy}
     {edit_paste}
-    {view_view_past_paper_pseudocode}
-    {view_toggle_pseudocode_guide_j277}
+    {view_pseudocode_editor}
+    {view_python_editor}
+    {view_pseudocode_guide_j277}
+    {view_past_paper_pseudocode}
     {run_transpile_pseudocode_to_python}
     {run_interpret_python_code}
 />
@@ -158,7 +171,7 @@
     </button>
 
     <button class="wrapper-editor" onclick={() => (activeEditor = pythonEditor)}>
-        <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]} display={$showPythonEditor} />
+        <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]} display={$activeRightTab == "pythonEditor"} />
         <J277Guide />
     </button>
 </main>
@@ -168,15 +181,16 @@
 
     main {
         height: calc(100vh - 2rem);
+        overflow: hidden;
 
         padding: 0.25rem;
         box-sizing: border-box;
 
         display: grid;
-        grid-template-rows: 1rem 1fr;
+        grid-template-rows: auto 1fr;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: "h0 h1" "e0 e1";
-        gap: 0.25rem;
+        column-gap: 0.5rem;
     }
 
     .wrapper-editor {

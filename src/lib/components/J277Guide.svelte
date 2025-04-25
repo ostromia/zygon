@@ -1,8 +1,8 @@
 <script>
-    import { showGuide } from "$lib/stores";
+    import { activeRightTab } from "$lib/stores";
 </script>
 
-<main style:display={$showGuide ? "grid" : "none"}>
+<main style:display={$activeRightTab == "pseudocodeGuide" ? "grid" : "none"}>
     <div class="title">Comments</div>
 
     <div class="row">
