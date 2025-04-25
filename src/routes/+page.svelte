@@ -1,8 +1,7 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
     import "@fontsource/albert-sans";
+    import { loadPyodide } from "pyodide";
 
     import CodeMirror from "$lib/components/CodeMirror.svelte";
     import Head from "$lib/components/Head.svelte";
@@ -18,6 +17,11 @@
     let activeEditor = $state() as CodeMirror;
 
     let pyodide;
+
+    (async () => {
+        pyodide = await loadPyodide();
+        await pyodide.runPythonAsync(`import io\nimport sys\nsys.stdout = io.StringIO()`);
+    })();
 
     function file_new() {
         if (pseudoEditor.getText().trim()) {
@@ -151,28 +155,17 @@
 
     async function run_interpret_python_code() {
         let output;
-
         try {
             output = pyodide.runPython(`${pythonEditor.getText()}`);
-            output = pyodide.runPython("sys.stdout.getvalue()") + "\n";
+            output = pyodide.runPython("sys.stdout.getvalue()");
             pyodide.runPython("sys.stdout = io.StringIO()");
         } catch (e) {
             output = e.toString();
         }
-
         pythonConsole.setText(output);
         $activeRightTab = "pythonConsole";
     }
-
-    onMount(async () => {
-        pyodide = await loadPyodide();
-        pyodide.runPython(`import io\nimport sys\nsys.stdout = io.StringIO()`);
-    });
 </script>
-
-<svelte:head>
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.27.5/full/pyodide.js"></script>
-</svelte:head>
 
 <Head />
 

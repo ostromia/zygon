@@ -9,6 +9,11 @@
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
-        "moduleResolution": "bundler"
+        "moduleResolution": "bundler",
+        "allowSyntheticDefaultImports": false,
+
+        "module": "ESNext",
+        "target": "ESNext",
+        "types": ["vite/client"]
     }
 }
