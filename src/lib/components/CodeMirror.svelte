@@ -26,6 +26,7 @@
         doc?: string;
         filetype?: LanguageSupport[];
         linenumbers?: boolean;
+        editable?: boolean;
         display?: boolean;
     }
 
@@ -33,6 +34,7 @@
         doc = "",
         filetype = [],
         linenumbers = true,
+        editable = true,
         display = true,
 
     }: Props = $props();
@@ -63,6 +65,10 @@
 
     if (linenumbers) {
         extensions.push(lineNumbers());
+    }
+
+    if (!editable) {
+        extensions.push(EditorState.readOnly.of(true));
     }
 
     export function focus(): void {
