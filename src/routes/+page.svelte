@@ -136,6 +136,8 @@
 
     function view_past_paper_pseudocode() {
         pseudoEditor.setText(p2p.pastPaperPseudocode);
+        pseudoEditor.setCursor(pseudoEditor.getEnd());
+        pseudoEditor.focus();
     }
 
     function run_transpile_pseudocode_to_python() {

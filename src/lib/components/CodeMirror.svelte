@@ -94,6 +94,10 @@
         view.dispatch({ selection: { anchor: position, head: position } });
     }
 
+    export function getEnd(): number {
+        return view.state.doc.length;
+    }
+
     export function isRange(): boolean {
         return !view.state.selection.main.empty;
     }
