@@ -144,12 +144,18 @@
         const PSEUDOARRAY = p2p.toArray(pseudoEditor.getText());
         const ERROR = p2p.validator(PSEUDOARRAY);
         if (ERROR === "") {
-            pythonEditor.setSyntax([pythonLanguageSupport()]);
+            pythonConsole.setText("");
+
             const PYTHONARRAY = p2p.transpiler(PSEUDOARRAY);
             pythonEditor.setText(p2p.toString(PYTHONARRAY));
+            pythonEditor.setCursor(pythonEditor.getEnd());
+            pythonEditor.focus();
+            view_python_editor();
         } else {
-            pythonEditor.setSyntax([]);
-            pythonEditor.setText(ERROR);
+            pythonConsole.setText(ERROR);
+            pythonConsole.setCursor(pythonConsole.getEnd());
+            pythonConsole.focus();
+            view_console();
         }
     }
 

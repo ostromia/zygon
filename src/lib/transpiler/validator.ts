@@ -61,6 +61,7 @@ function IterationCountControlled(INDENT, INDEX, LINE) {
 
 export default function validator(pseudoArrayInput) {
     python = pseudoArrayInput;
+    message = "";
 
     for (let i = 0; i < python.length; i++) {
         const [type, indent, line] = [...python[i]];
