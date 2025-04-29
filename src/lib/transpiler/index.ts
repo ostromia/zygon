@@ -87,9 +87,9 @@ else
   print "You are under your time limit!"
 endif`;
 
-type Result = { success: true; data: string } | { success: false; error: Error };
+type Result<T> = { success: true; data: T } | { success: false; error: Error };
 
-function pseudocode2python(pseudocode: string): Result {
+function pseudocode2python(pseudocode: string): Result<string> {
     const PSEUDOARRAY = toArray(pseudocode);
     const ERROR = validator(PSEUDOARRAY);
 

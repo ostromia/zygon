@@ -66,10 +66,21 @@ function Variables(line) {
     return line;
 }
 
-// function InputOutput(line)
-// {
-//   return line;
-// }
+function InputOutput(line: string): string {
+    let match = /^(?:print|console\.log|console\.writeline)\s*(?:\(\s*(.*?)\s*\)|(.*?))\s*$/.exec(line);
+
+    if (match) {
+        return `print(${match[1] ?? match[2]})`;
+    }
+
+    match = /^input\s*(?:\(\s*(.*?)\s*\)|(.*?))\s*$/.exec(line);
+
+    if (match) {
+        return `input(${match[1] ?? match[2]})`;
+    }
+
+    return line;
+}
 
 function Casting(line) {
     // if (/str\((.*?)\)/.test(line)) {
@@ -190,19 +201,9 @@ function RandomNumbers(line) {
     return line;
 }
 
-function Other(line) {
-    if (line.includes("console.writeline")) {
-        return line.replaceAll("console.writeline", "print");
-    }
-    if (line.includes("console.log")) {
-        return line.replaceAll("console.log", "print");
-    }
-    if (/^print\s*\((.*?)\)$/.test(line)) {
-        const part = /^print\s*\((.*?)\)$/.exec(line)[1];
-        return `print(${part})`;
-    }
-    return line;
-}
+// function Other(line) {
+//     return line;
+// }
 
 function isPseudo(type, indent1, indent2) {
     if (!type && indent1 == indent2) {
@@ -346,6 +347,7 @@ function Subroutines(INDENT, INDEX) {
 
 export default function transpiler(pseudoArrayInput) {
     python = pseudoArrayInput;
+    randomImport = false;
 
     for (let i = 0; i < python.length; i++) {
         const [type, indent, line] = [...python[i]];
@@ -353,13 +355,13 @@ export default function transpiler(pseudoArrayInput) {
             python[i][2] = Commenting(python[i][2]);
             python[i][2] = Operators(python[i][2]);
             python[i][2] = Variables(python[i][2]);
-            // python[i][2] = InputOutput(python[i][2]);
+            python[i][2] = InputOutput(python[i][2]);
             python[i][2] = Casting(python[i][2]);
             python[i][2] = StringHandlingOperations(python[i][2]);
             // // python[i][2] = FileHandling(python[i][2]);
             python[i][2] = Arrays(python[i][2]);
             python[i][2] = RandomNumbers(python[i][2]);
-            python[i][2] = Other(python[i][2]);
+            // python[i][2] = Other(python[i][2]);
 
             if (/^for(.*?)$/.test(python[i][2])) {
                 IterationCountControlled(indent, i);
