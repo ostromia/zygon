@@ -87,10 +87,22 @@ else
   print "You are under your time limit!"
 endif`;
 
+type Result = { success: true; data: string } | { success: false; error: Error };
+
+function pseudocode2python(pseudocode: string): Result {
+    const PSEUDOARRAY = toArray(pseudocode);
+    const ERROR = validator(PSEUDOARRAY);
+
+    if (ERROR === "") {
+        const PYTHONARRAY = transpiler(PSEUDOARRAY);
+        return { success: true, data: toString(PYTHONARRAY) };
+    } else {
+        const error = new Error(ERROR);
+        return { success: false, error: error };
+    }
+}
+
 export default {
-    toArray,
-    toString,
-    transpiler,
-    validator,
+    pseudocode2python,
     pastPaperPseudocode
 };

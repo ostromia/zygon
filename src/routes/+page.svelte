@@ -141,18 +141,16 @@
     }
 
     function run_transpile_pseudocode_to_python() {
-        const PSEUDOARRAY = p2p.toArray(pseudoEditor.getText());
-        const ERROR = p2p.validator(PSEUDOARRAY);
-        if (ERROR === "") {
-            pythonConsole.setText("");
+        const result = p2p.pseudocode2python(pseudoEditor.getText());
 
-            const PYTHONARRAY = p2p.transpiler(PSEUDOARRAY);
-            pythonEditor.setText(p2p.toString(PYTHONARRAY));
+        if (result.success) {
+            pythonConsole.setText("");
+            pythonEditor.setText(result.data);
             pythonEditor.setCursor(pythonEditor.getEnd());
             pythonEditor.focus();
             view_python_editor();
         } else {
-            pythonConsole.setText(ERROR);
+            pythonConsole.setText(result.error.message);
             pythonConsole.setCursor(pythonConsole.getEnd());
             pythonConsole.focus();
             view_console();
