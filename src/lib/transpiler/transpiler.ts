@@ -67,7 +67,9 @@ function Variables(line) {
 }
 
 function InputOutput(line: string): string {
-    let match = /^(?:print|console\.log|console\.writeline)\s*(?:\(\s*(.*?)\s*\)|(.*?))\s*$/.exec(line);
+    let match = /^(?:print|console\.log|console\.writeline)\s*(?:\(\s*(.*?)\s*\)|(.*?))\s*$/.exec(
+        line
+    );
 
     if (match) {
         return `print(${match[1] ?? match[2]})`;

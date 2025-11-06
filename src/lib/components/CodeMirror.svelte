@@ -35,8 +35,7 @@
         filetype = [],
         linenumbers = true,
         editable = true,
-        display = true,
-
+        display = true
     }: Props = $props();
 
     let view: EditorView;

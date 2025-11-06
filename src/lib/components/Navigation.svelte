@@ -72,7 +72,9 @@
         <button class="nav-button" onclick={toggle_dropdown}>Run</button>
         {#if $showDropdown == "Run"}
             <div class="nav-dropdown">
-                <button onclick={run_transpile_pseudocode_to_python}>Transpile Pseudocode to Python</button>
+                <button onclick={run_transpile_pseudocode_to_python}
+                    >Transpile Pseudocode to Python</button
+                >
                 <button onclick={run_interpret_python_code}>Interpret Python Code</button>
             </div>
         {/if}

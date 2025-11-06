@@ -10,24 +10,48 @@
 </script>
 
 <div id="left-tabs">
-    <button class="tab" onclick={() => ($activeLeftTab = "pseudocodeEditor")} style:background-color={$activeLeftTab == "pseudocodeEditor" ? activeTabColor : inactiveTabColor}>
+    <button
+        class="tab"
+        onclick={() => ($activeLeftTab = "pseudocodeEditor")}
+        style:background-color={$activeLeftTab == "pseudocodeEditor"
+            ? activeTabColor
+            : inactiveTabColor}
+    >
         <img alt="" src={ocr_logo} />
         <span>Pseudocode</span>
     </button>
 </div>
 
 <div id="right-tabs">
-    <button class="tab" onclick={() => ($activeRightTab = "pythonEditor")} style:background-color={$activeRightTab == "pythonEditor" ? activeTabColor : inactiveTabColor}>
+    <button
+        class="tab"
+        onclick={() => ($activeRightTab = "pythonEditor")}
+        style:background-color={$activeRightTab == "pythonEditor"
+            ? activeTabColor
+            : inactiveTabColor}
+    >
         <img alt="" src={python_logo} />
         <span>Python</span>
     </button>
 
-    <button class="tab" onclick={() => ($activeRightTab = "pythonConsole")} style:background-color={$activeRightTab == "pythonConsole" ? activeTabColor : inactiveTabColor}>
+    <button
+        class="tab"
+        onclick={() => ($activeRightTab = "pythonConsole")}
+        style:background-color={$activeRightTab == "pythonConsole"
+            ? activeTabColor
+            : inactiveTabColor}
+    >
         <img alt="" src={terminal_logo} />
         <span>Console</span>
     </button>
 
-    <button class="tab" onclick={() => ($activeRightTab = "pseudocodeGuide")} style:background-color={$activeRightTab == "pseudocodeGuide" ? activeTabColor : inactiveTabColor}>
+    <button
+        class="tab"
+        onclick={() => ($activeRightTab = "pseudocodeGuide")}
+        style:background-color={$activeRightTab == "pseudocodeGuide"
+            ? activeTabColor
+            : inactiveTabColor}
+    >
         <img alt="" src={ocr_logo} />
         <span>{"Pseudocode Guide"}</span>
     </button>

@@ -209,8 +209,17 @@
     </button>
 
     <button class="wrapper-editor" onclick={() => (activeEditor = pythonEditor)}>
-        <CodeMirror bind:this={pythonEditor} filetype={[pythonLanguageSupport()]} display={$activeRightTab == "pythonEditor"} />
-        <CodeMirror bind:this={pythonConsole} display={$activeRightTab == "pythonConsole"} linenumbers={false} editable={false} />
+        <CodeMirror
+            bind:this={pythonEditor}
+            filetype={[pythonLanguageSupport()]}
+            display={$activeRightTab == "pythonEditor"}
+        />
+        <CodeMirror
+            bind:this={pythonConsole}
+            display={$activeRightTab == "pythonConsole"}
+            linenumbers={false}
+            editable={false}
+        />
         <J277Guide />
     </button>
 </main>
