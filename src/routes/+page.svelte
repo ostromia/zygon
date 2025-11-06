@@ -2,12 +2,10 @@
     import { onMount } from "svelte";
 
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
-    import "@fontsource/albert-sans";
     import { loadPyodide } from "pyodide";
     import type { PyodideInterface } from "pyodide";
 
     import CodeMirror from "$lib/components/CodeMirror.svelte";
-    import Head from "$lib/components/Head.svelte";
     import Headers from "$lib/components/Headers.svelte";
     import J277Guide from "$lib/components/J277Guide.svelte";
     import Navigation from "$lib/components/Navigation.svelte";
@@ -180,8 +178,6 @@
     });
 </script>
 
-<Head />
-
 <Navigation
     {file_new}
     {file_open}
@@ -225,8 +221,6 @@
 </main>
 
 <style lang="scss">
-    @use "../app.scss";
-
     main {
         height: calc(100vh - 2rem);
         overflow: hidden;
