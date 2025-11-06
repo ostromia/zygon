@@ -12,12 +12,16 @@
     @use "@fontsource/atkinson-hyperlegible/index.css";
     @use "$lib/styles/colors";
 
-    :global(html) {
+    :global(html),
+    :global(body) {
+        height: 100%;
         background-color: colors.$background;
     }
 
     :global(body) {
-        margin: 0 !important;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        margin: 0;
         font-family: "Atkinson Hyperlegible", sans-serif;
     }
 </style>

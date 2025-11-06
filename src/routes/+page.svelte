@@ -222,7 +222,6 @@
 
 <style lang="scss">
     main {
-        height: calc(100vh - 2rem);
         overflow: hidden;
 
         padding: 0.25rem;
@@ -232,7 +231,7 @@
         grid-template-rows: auto 1fr;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: "h0 h1" "e0 e1";
-        column-gap: 0.5rem;
+        column-gap: 0.25rem;
     }
 
     .wrapper-editor {
