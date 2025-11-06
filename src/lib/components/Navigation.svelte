@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Favicon from "$lib/components/Favicon.svelte";
     import { showDropdown } from "$lib/stores";
 
     function toggle_dropdown(e: MouseEvent) {
@@ -31,10 +30,6 @@
 <svelte:window onclick={toggle_dropdown} />
 
 <nav id="mainmenu">
-    <div class="wrapper-favicon">
-        <Favicon width="1.4rem" color="white" />
-    </div>
-
     <div class="wrapper-nav-button">
         <button class="nav-button" onclick={toggle_dropdown}>File</button>
         {#if $showDropdown == "File"}
@@ -94,14 +89,6 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-    }
-
-    .wrapper-favicon {
-        height: 2rem;
-        display: flex;
-        align-items: center;
-        padding-right: 0.5rem;
-        box-sizing: border-box;
     }
 
     .wrapper-nav-button {
