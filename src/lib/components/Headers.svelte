@@ -87,7 +87,6 @@
 
         > span {
             color: lightgrey;
-            font-family: "Albert Sans";
 
             font-size: 0.9rem;
             line-height: 0.9rem;

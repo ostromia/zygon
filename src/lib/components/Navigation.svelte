@@ -110,7 +110,6 @@
         background-color: unset;
 
         color: lightgrey;
-        font-family: "Albert Sans";
 
         font-size: 0.8rem;
         line-height: 0.8rem;
@@ -140,7 +139,6 @@
         background-color: unset;
 
         color: lightgrey;
-        font-family: "Albert Sans";
 
         text-align: left;
 

@@ -410,7 +410,6 @@ myVariable = random(1,6)
 
         background-color: #282c34;
         color: white;
-        font-family: "Albert Sans";
     }
 
     .title {
