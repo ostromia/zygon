@@ -79,8 +79,6 @@
         padding: 0.5rem;
         box-sizing: border-box;
 
-        background-color: #282c34;
-
         > img {
             height: 1rem;
         }

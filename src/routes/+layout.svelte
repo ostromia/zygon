@@ -10,12 +10,10 @@
 
 <style lang="scss">
     @use "@fontsource/atkinson-hyperlegible/index.css";
-
-    $bc: #2e323b;
-    $fc: #21252b;
+    @use "$lib/styles/colors";
 
     :global(html) {
-        background-color: $bc;
+        background-color: colors.$background;
     }
 
     :global(body) {

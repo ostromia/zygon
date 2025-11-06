@@ -82,9 +82,11 @@
 </nav>
 
 <style lang="scss">
+    @use "$lib/styles/colors";
+
     nav {
         height: 2rem;
-        background-color: #21252b;
+        background-color: colors.$foreground;
         padding: 0 0.5rem;
         box-sizing: border-box;
 
