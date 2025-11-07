@@ -1,16 +1,14 @@
 <script lang="ts">
-    import { writable } from "svelte/store";
-
     interface Props {
         menubar: { name: string; items: { name: string; action: () => void }[] }[];
     }
     const { menubar }: Props = $props();
 
-    const showDropdown = writable<string>("");
+    let showDropdown = $state("");
 
     function toggle_dropdown(e: MouseEvent) {
         if (e.target instanceof HTMLElement) {
-            $showDropdown = e.target.innerHTML;
+            showDropdown = e.target.innerHTML;
         }
     }
 </script>
@@ -24,7 +22,7 @@
                 {menu.name}
             </button>
 
-            {#if $showDropdown === menu.name}
+            {#if showDropdown === menu.name}
                 <div class="nav-dropdown">
                     {#each menu.items as menuitem}
                         <button onclick={menuitem.action}>

@@ -1,5 +1,5 @@
 <script>
-    import { activeLeftTab, activeRightTab } from "$lib/stores";
+    import { userstate } from "$lib/state.svelte";
 
     const activeTabColor = "#282c34";
     const inactiveTabColor = "#3a4049";
@@ -12,8 +12,8 @@
 <div id="left-tabs">
     <button
         class="tab"
-        onclick={() => ($activeLeftTab = "pseudocodeEditor")}
-        style:background-color={$activeLeftTab == "pseudocodeEditor"
+        onclick={() => (userstate.activeLeftTab = "pseudocodeEditor")}
+        style:background-color={userstate.activeLeftTab == "pseudocodeEditor"
             ? activeTabColor
             : inactiveTabColor}
     >
@@ -25,8 +25,8 @@
 <div id="right-tabs">
     <button
         class="tab"
-        onclick={() => ($activeRightTab = "pythonEditor")}
-        style:background-color={$activeRightTab == "pythonEditor"
+        onclick={() => (userstate.activeRightTab = "pythonEditor")}
+        style:background-color={userstate.activeRightTab == "pythonEditor"
             ? activeTabColor
             : inactiveTabColor}
     >
@@ -36,8 +36,8 @@
 
     <button
         class="tab"
-        onclick={() => ($activeRightTab = "pythonConsole")}
-        style:background-color={$activeRightTab == "pythonConsole"
+        onclick={() => (userstate.activeRightTab = "pythonConsole")}
+        style:background-color={userstate.activeRightTab == "pythonConsole"
             ? activeTabColor
             : inactiveTabColor}
     >
@@ -47,8 +47,8 @@
 
     <button
         class="tab"
-        onclick={() => ($activeRightTab = "pseudocodeGuide")}
-        style:background-color={$activeRightTab == "pseudocodeGuide"
+        onclick={() => (userstate.activeRightTab = "pseudocodeGuide")}
+        style:background-color={userstate.activeRightTab == "pseudocodeGuide"
             ? activeTabColor
             : inactiveTabColor}
     >

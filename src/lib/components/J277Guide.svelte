@@ -1,8 +1,8 @@
 <script>
-    import { activeRightTab } from "$lib/stores";
+    import { userstate } from "$lib/state.svelte";
 </script>
 
-<main style:display={$activeRightTab == "pseudocodeGuide" ? "grid" : "none"}>
+<main style:display={userstate.activeRightTab == "pseudocodeGuide" ? "grid" : "none"}>
     <div class="title">Comments</div>
 
     <div class="row">

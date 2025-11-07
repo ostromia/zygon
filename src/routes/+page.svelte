@@ -9,7 +9,7 @@
     import Headers from "$lib/components/Headers.svelte";
     import J277Guide from "$lib/components/J277Guide.svelte";
     import Navigation from "$lib/components/Navigation.svelte";
-    import { activeLeftTab, activeRightTab } from "$lib/stores";
+    import { userstate } from "$lib/state.svelte";
     import { default as p2p } from "$lib/transpiler";
 
     let pseudoEditor = $state() as CodeMirror;
@@ -113,23 +113,23 @@
     }
 
     function view_pseudocode_editor() {
-        $activeLeftTab = "pseudocodeEditor";
+        userstate.activeLeftTab = "pseudocodeEditor";
         activeEditor = pseudoEditor;
         activeEditor.focus();
     }
 
     function view_python_editor() {
-        $activeRightTab = "pythonEditor";
+        userstate.activeRightTab = "pythonEditor";
         activeEditor = pythonEditor;
         activeEditor.focus();
     }
 
     function view_console() {
-        $activeRightTab = "pythonConsole";
+        userstate.activeRightTab = "pythonConsole";
     }
 
     function view_pseudocode_guide_j277() {
-        $activeRightTab = "pseudocodeGuide";
+        userstate.activeRightTab = "pseudocodeGuide";
     }
 
     function view_past_paper_pseudocode() {
@@ -169,7 +169,7 @@
         }
 
         pythonConsole.setText(output);
-        $activeRightTab = "pythonConsole";
+        userstate.activeRightTab = "pythonConsole";
     }
 
     onMount(async () => {
@@ -233,11 +233,11 @@
         <CodeMirror
             bind:this={pythonEditor}
             filetype={[pythonLanguageSupport()]}
-            display={$activeRightTab == "pythonEditor"}
+            display={userstate.activeRightTab == "pythonEditor"}
         />
         <CodeMirror
             bind:this={pythonConsole}
-            display={$activeRightTab == "pythonConsole"}
+            display={userstate.activeRightTab == "pythonConsole"}
             linenumbers={false}
             editable={false}
         />
