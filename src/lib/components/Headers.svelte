@@ -1,12 +1,14 @@
 <script>
     import { userstate } from "$lib/state.svelte";
 
+    import { github, ocr, python, terminal } from "$lib/assets/icons";
+
     const activeTabColor = "#282c34";
     const inactiveTabColor = "#3a4049";
 
-    const python_logo = "devicons/python.svg";
-    const terminal_logo = "devicons/terminal.svg";
-    const ocr_logo = "devicons/ocr-logo.svg";
+    // const python_logo = "devicons/python.svg";
+    // const terminal_logo = "devicons/terminal.svg";
+    // const ocr_logo = "devicons/ocr-logo.svg";
 </script>
 
 <div id="left-tabs">
@@ -17,7 +19,7 @@
             ? activeTabColor
             : inactiveTabColor}
     >
-        <img alt="" src={ocr_logo} />
+        <img alt="" src={ocr} />
         <span>Pseudocode</span>
     </button>
 </div>
@@ -30,7 +32,7 @@
             ? activeTabColor
             : inactiveTabColor}
     >
-        <img alt="" src={python_logo} />
+        <img alt="" src={python} />
         <span>Python</span>
     </button>
 
@@ -41,7 +43,7 @@
             ? activeTabColor
             : inactiveTabColor}
     >
-        <img alt="" src={terminal_logo} />
+        <img alt="" src={terminal} />
         <span>Console</span>
     </button>
 
@@ -52,7 +54,7 @@
             ? activeTabColor
             : inactiveTabColor}
     >
-        <img alt="" src={ocr_logo} />
+        <img alt="" src={ocr} />
         <span>{"Pseudocode Guide"}</span>
     </button>
 </div>
