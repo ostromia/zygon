@@ -19,5 +19,12 @@ export function viteStaticCopyPyodide() {
 
 export default defineConfig({
     plugins: [sveltekit(), viteStaticCopyPyodide()],
-    optimizeDeps: { exclude: ["pyodide"] }
+    optimizeDeps: { exclude: ["pyodide"] },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: "modern"
+            }
+        }
+    }
 });
