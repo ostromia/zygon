@@ -179,22 +179,47 @@
 </script>
 
 <Navigation
-    {file_new}
-    {file_open}
-    {file_save_as_pseudocode}
-    {file_save_as_python}
-    {edit_undo}
-    {edit_redo}
-    {edit_cut}
-    {edit_copy}
-    {edit_paste}
-    {view_pseudocode_editor}
-    {view_python_editor}
-    {view_console}
-    {view_pseudocode_guide_j277}
-    {view_past_paper_pseudocode}
-    {run_transpile_pseudocode_to_python}
-    {run_interpret_python_code}
+    menubar={[
+        {
+            name: "File",
+            items: [
+                { name: "New", action: file_new },
+                { name: "Open", action: file_open },
+                { name: "Save As... (Pseudocode)", action: file_save_as_pseudocode },
+                { name: "Save As... (Python)", action: file_save_as_python }
+            ]
+        },
+        {
+            name: "Edit",
+            items: [
+                { name: "Undo", action: edit_undo },
+                { name: "Redo", action: edit_redo },
+                { name: "Cut", action: edit_cut },
+                { name: "Copy", action: edit_copy },
+                { name: "Paste", action: edit_paste }
+            ]
+        },
+        {
+            name: "View",
+            items: [
+                { name: "Pseudocode Editor", action: view_pseudocode_editor },
+                { name: "Python Editor", action: view_python_editor },
+                { name: "Console", action: view_console },
+                { name: "Pseudocode Guide (J277)", action: view_pseudocode_guide_j277 },
+                { name: "Past Paper Pseudocode", action: view_past_paper_pseudocode }
+            ]
+        },
+        {
+            name: "Run",
+            items: [
+                {
+                    name: "Transpile Pseudocode to Python",
+                    action: run_transpile_pseudocode_to_python
+                },
+                { name: "Interpret Python Code", action: run_interpret_python_code }
+            ]
+        }
+    ]}
 />
 
 <main>

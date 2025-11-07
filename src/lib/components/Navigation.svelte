@@ -1,92 +1,46 @@
 <script lang="ts">
-    import { showDropdown } from "$lib/stores";
+    import { writable } from "svelte/store";
+
+    interface Props {
+        menubar: { name: string; items: { name: string; action: () => void }[] }[];
+    }
+    const { menubar }: Props = $props();
+
+    const showDropdown = writable<string>("");
 
     function toggle_dropdown(e: MouseEvent) {
         if (e.target instanceof HTMLElement) {
             $showDropdown = e.target.innerHTML;
         }
     }
-
-    let {
-        file_new,
-        file_open,
-        file_save_as_pseudocode,
-        file_save_as_python,
-        edit_undo,
-        edit_redo,
-        edit_cut,
-        edit_copy,
-        edit_paste,
-        view_pseudocode_editor,
-        view_python_editor,
-        view_console,
-        view_pseudocode_guide_j277,
-        view_past_paper_pseudocode,
-        run_transpile_pseudocode_to_python,
-        run_interpret_python_code
-    } = $props();
 </script>
 
 <svelte:window onclick={toggle_dropdown} />
 
-<nav id="mainmenu">
-    <div class="wrapper-nav-button">
-        <button class="nav-button" onclick={toggle_dropdown}>File</button>
-        {#if $showDropdown == "File"}
-            <div class="nav-dropdown">
-                <button onclick={file_new}>New</button>
-                <button onclick={file_open}>Open</button>
-                <button onclick={file_save_as_pseudocode}>Save As... (Pseudocode)</button>
-                <button onclick={file_save_as_python}>Save As... (Python)</button>
-            </div>
-        {/if}
-    </div>
+<nav>
+    {#each menubar as menu}
+        <div class="wrapper-nav-button">
+            <button class="nav-button">
+                {menu.name}
+            </button>
 
-    <div class="wrapper-nav-button">
-        <button class="nav-button" onclick={toggle_dropdown}>Edit</button>
-        {#if $showDropdown == "Edit"}
-            <div class="nav-dropdown">
-                <button onclick={edit_undo}>Undo</button>
-                <button onclick={edit_redo}>Redo</button>
-                <button onclick={edit_cut}>Cut</button>
-                <button onclick={edit_copy}>Copy</button>
-                <button onclick={edit_paste}>Paste</button>
-            </div>
-        {/if}
-    </div>
-
-    <div class="wrapper-nav-button">
-        <button class="nav-button" onclick={toggle_dropdown}>View</button>
-        {#if $showDropdown == "View"}
-            <div class="nav-dropdown">
-                <button onclick={view_pseudocode_editor}>Pseudocode Editor</button>
-                <button onclick={view_python_editor}>Python Editor</button>
-                <button onclick={view_console}>Console</button>
-                <button onclick={view_pseudocode_guide_j277}>Pseudocode Guide (J277)</button>
-                <button onclick={view_past_paper_pseudocode}>Past Paper Pseudocode</button>
-            </div>
-        {/if}
-    </div>
-
-    <div class="wrapper-nav-button">
-        <button class="nav-button" onclick={toggle_dropdown}>Run</button>
-        {#if $showDropdown == "Run"}
-            <div class="nav-dropdown">
-                <button onclick={run_transpile_pseudocode_to_python}
-                    >Transpile Pseudocode to Python</button
-                >
-                <button onclick={run_interpret_python_code}>Interpret Python Code</button>
-            </div>
-        {/if}
-    </div>
+            {#if $showDropdown === menu.name}
+                <div class="nav-dropdown">
+                    {#each menu.items as menuitem}
+                        <button onclick={menuitem.action}>
+                            {menuitem.name}
+                        </button>
+                    {/each}
+                </div>
+            {/if}
+        </div>
+    {/each}
 </nav>
 
 <style lang="scss">
-    @use "$lib/styles/colors";
-
     nav {
         height: 2rem;
-        background-color: colors.$foreground;
+        background-color: #21252b;
         padding: 0 0.5rem;
         box-sizing: border-box;
 
