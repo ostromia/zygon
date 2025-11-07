@@ -1,14 +1,10 @@
 <script>
     import { userstate } from "$lib/state.svelte";
 
-    import { github, ocr, python, terminal } from "$lib/assets/icons";
+    import { ocr, python, terminal } from "$lib/assets/icons";
 
     const activeTabColor = "#282c34";
     const inactiveTabColor = "#3a4049";
-
-    // const python_logo = "devicons/python.svg";
-    // const terminal_logo = "devicons/terminal.svg";
-    // const ocr_logo = "devicons/ocr-logo.svg";
 </script>
 
 <div id="left-tabs">
