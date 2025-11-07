@@ -1,0 +1,15 @@
+@use "@fontsource/atkinson-hyperlegible/index.css";
+@use "$lib/styles/colors";
+
+html,
+body {
+    height: 100%;
+    background-color: colors.$background;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    margin: 0;
+    font-family: "Atkinson Hyperlegible", sans-serif;
+}
