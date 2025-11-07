@@ -4,16 +4,39 @@
     }
     const { menubar }: Props = $props();
 
+    let isClicked = $state(false);
     let showDropdown = $state("");
 
-    function toggle_dropdown(e: MouseEvent) {
-        if (e.target instanceof HTMLElement) {
-            showDropdown = e.target.innerHTML;
+    function mouseTrack(e: MouseEvent) {
+        if (!(e.target instanceof HTMLElement)) return;
+
+        const wrapper = e.target.closest(".wrapper-nav-button");
+
+        if (wrapper) {
+            showDropdown = wrapper.querySelector(".nav-button")!.innerHTML;
+        }
+    }
+
+    function handleClick(e: MouseEvent) {
+        if (!(e.target instanceof HTMLElement)) return;
+
+        if (isClicked) {
+            isClicked = false;
+            window.removeEventListener("mousemove", mouseTrack);
+            return;
+        }
+
+        const wrapper = e.target.closest(".wrapper-nav-button");
+
+        if (wrapper) {
+            showDropdown = wrapper.querySelector(".nav-button")!.innerHTML;
+            isClicked = true;
+            window.addEventListener("mousemove", mouseTrack);
         }
     }
 </script>
 
-<svelte:window onclick={toggle_dropdown} />
+<svelte:window onclick={handleClick} />
 
 <nav>
     {#each menubar as menu}
@@ -22,7 +45,7 @@
                 {menu.name}
             </button>
 
-            {#if showDropdown === menu.name}
+            {#if showDropdown === menu.name && isClicked}
                 <div class="nav-dropdown">
                     {#each menu.items as menuitem}
                         <button onclick={menuitem.action}>
